@@ -18,32 +18,36 @@
                     <img src="img/gl.png" alt="google">
                 </div> -->
                 <form id="login" action="" class="input-group">
-                    <input type="text" class="input-field" placeholder="User name or Email" required>
+                    <input type="text" class="input-field" placeholder="Enter Id" required>
                     <input type="password" class="input-field" placeholder="Enter Password" required>
-                    <input type="checkbox" class="checkbox"><span>Remember Password</span>
+                   <!--  <input type="checkbox" class="checkbox"><span>Remember Password</span> -->
                     <button class="submit">Login</button>
                 </form>
                 <form id="register" action="" class="input-group">
                     <h5>아이디</h5>
                     <input type="text" class="input-field" placeholder="Enter your new ID" required>
                    <h5>비밀번호</h5>
-                    <input type="password" class="input-field" placeholder="Enter your new Password" required>
+                    <input type="password" class="input-field" id="password" placeholder="Enter your new Password" onkeydown="inputPassword();" onblur="outFocusFromPassword();" required>
+                    <div class='alert' id='alertInputPassword'></div>
                     <h5>비밀번호 확인</h5>
-                    <input type="password" class="input-field" placeholder="Re-enter Password" required>
+                    <input type="password" class="input-field" id="checkPassword" placeholder="Re-enter Password"  onkeyup="check();"  onblur="outFocusFromCheck();" required>
+                	  <div class='alert' id='alertCheckPassword'></div>
                      <h5>이름</h5>
-                     <input type="email" class="input-field" placeholder="Your Name" required>
+                     <input type="text" class="input-field" placeholder="Your Name" required>
                      <h5>이메일</h5>
-                     <input type="email" class="input-field" placeholder="Your Email" required>
+                     <input type="email"  id='email' class="input-field" placeholder="Your Email" onkeydown="checkEmail();"  required>
                      <h5>생일</h5>
-                     <input type="email" class="input-field" placeholder="Your Birthday (ex 19960205)" required>
+                     <input type="text" class="input-field" placeholder="Your Birthday (ex 19960205)" required>
        				<input type="text" id="postcode"  class="input-field"  placeholder="우편번호">
 					<button type="button" class="w-btn-outline w-btn-yellow-outline" onclick="DaumAPI()" >우편번호 찾기</button><br>
 					<input type="text" id="address"  class="input-field"  placeholder="주소"><br>
 					<input type="text" id="detailAddress" class="input-field"  placeholder="상세주소">
 					<input type="text" id="extraAddress"  class="input-field"  placeholder="참고항목">
 
-                    <input type="checkbox" class="checkbox"><span>Terms and conditions</span>
+                   <br>
                     <button class="submit">REGISTER</button>
+                    <br><br>
+              
                 </form>
             </div>
         </div>
