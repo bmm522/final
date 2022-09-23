@@ -139,3 +139,19 @@ span {
 	color:red;
 	font-weight: 600;
 }
+.input-email{
+	width: 80%;
+    padding: 10px 0;
+    margin: 5px 0;
+    border: none;
+    border-bottom: 1px solid #999;
+    outline: none;
+    background: transparent;
+}
+
+#emailButton {
+	position:absolute;
+	width:70px;
+	height:45px;
+	
+}
