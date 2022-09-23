@@ -30,7 +30,9 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	compile group: 'javax.mail', name: 'javax.mail-api', version: '1.6.2'
-	compile("org.springframework.boot:spring-boot-starter-mail")
+	compile "org.springframework.boot:spring-boot-starter-mail"
+	compile "org.springframework:spring-context-support"
+	compile "com.sun.mail:javax.mail"
 }
 
 tasks.named('test') {
