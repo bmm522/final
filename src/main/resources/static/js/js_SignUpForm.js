@@ -77,3 +77,8 @@ function checkEmail(){
 function outFocusFromEmail(){
 	document.getElementById('alertCheckEmail').innerHTML = '';
 }
+
+function emailAPI() {
+	console.log("실행됨");
+	window.location='http://localhost:8080/login/email/get';
+}

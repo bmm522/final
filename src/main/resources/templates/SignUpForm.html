@@ -1,4 +1,4 @@
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>로그인 / 회원가입 폼 템플릿</title>
         <link rel="stylesheet" href="css/css_SignUpForm.css">
@@ -37,7 +37,7 @@
                      <h5>이메일</h5>
                      <div id ='emailForm'>
 	                     <input type="email"  id='email' class="input-email" placeholder="Your Email" onkeydown="checkEmail();" onblur="outFocusFromEmail();" required>
-	                     <button type="button" id='emailButton' class="w-btn-outline w-btn-yellow-outline" onclick="DaumAPI()" >인증번호</button>
+	                     <button type="button" id='emailButton' class="w-btn-outline w-btn-yellow-outline" onclick="emailAPI()" >인증번호</button>
                     </div>
                      <div class='alert' id='alertCheckEmail'></div>
                        <input type="text" class="input-field"  placeholder="인증코드 확인">

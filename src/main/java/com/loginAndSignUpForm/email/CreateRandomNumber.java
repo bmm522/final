@@ -1,4 +1,4 @@
-package com.loginAndSignUpForm.mail;
+package com.loginAndSignUpForm.email;
 
 import java.util.Random;
 
