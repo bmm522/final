@@ -35,9 +35,12 @@
                      <h5>이름</h5>
                      <input type="text" class="input-field" placeholder="Your Name" required>
                      <h5>이메일</h5>
-                     <input type="email"  id='email' class="input-field" placeholder="Your Email" onkeydown="checkEmail();"  required>
+                     <input type="email"  id='email' class="input-field" placeholder="Your Email" onkeydown="checkEmail();" onblur="outFocusFromEmail();" required>
+                     <div class='alert' id='alertCheckEmail'></div>
                      <h5>생일</h5>
                      <input type="text" class="input-field" placeholder="Your Birthday (ex 19960205)" required>
+                     <input type="text" class="input-field"  placeholder="인증코드 확인">
+                     <button type="button" class="w-btn-outline w-btn-yellow-outline" onclick="DaumAPI()" >이메일 확인</button>
        				<input type="text" id="postcode"  class="input-field"  placeholder="우편번호">
 					<button type="button" class="w-btn-outline w-btn-yellow-outline" onclick="DaumAPI()" >우편번호 찾기</button><br>
 					<input type="text" id="address"  class="input-field"  placeholder="주소"><br>

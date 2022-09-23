@@ -63,12 +63,17 @@ function outFocusFromCheck(){
 function checkEmail(){
 	let emailForm = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 	let email = document.getElementById('email').value;
-	
-
+	let notification = document.getElementById('alertCheckEmail');
 	
 	if(emailForm.test(email)){
-		console.log('성공');
+		notification.style.color='yellowgreen';
+		notification.innerHTML = 'Ok!';
 	} else {
-		console.log('실패');
+		notification.style.color='red';
+		notification.innerHTML = '형식이 올바르지 않습니다.';
 	}
+}
+
+function outFocusFromEmail(){
+	document.getElementById('alertCheckEmail').innerHTML = '';
 }
