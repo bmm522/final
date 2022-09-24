@@ -19,11 +19,12 @@ public class EmailAuthenticationCode {
 	/** 메일 PW **/
 	private static final String MAIL_PW = "Dlquf!2tkfkd!2";
 	
-	public static void sendMail(String subejct, String body) {
+	public static void sendMail(String subejct, String body, Object obj) {
 		try {
+			
 			InternetAddress[] receiverList = new InternetAddress[1];
-			receiverList[0] = new InternetAddress("rlawldls11@naver.com");
-
+			receiverList[0] = new InternetAddress((String)obj);
+			
 			
 			// SMTP 발송 Properties 설정
 			Properties props = new Properties();
