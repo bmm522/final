@@ -12,7 +12,7 @@ public class EmailController {
 	EmailServiceImpl es = new EmailServiceImpl();
 	
 	public void sendEmail(Model m) {
-		es.checkEamil(m);
+		es.sendEamil(m);
 	}
 	
 	@RequestMapping("/signup/email/checkresult/get")

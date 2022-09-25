@@ -11,7 +11,7 @@ public class EmailServiceImpl implements EamilService {
 	private String randomNumber = ""; 
 	
 	
-	public void checkEamil(Object obj) {
+	public void sendEamil(Object obj) {
 		CreateRandomNumber cr= new CreateRandomNumber();
 		String randomNumber = cr.makeRandomNumber();
 		EmailAuthenticationCode.sendMail("테스트", randomNumber, obj);
