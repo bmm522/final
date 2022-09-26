@@ -4,5 +4,5 @@ import org.springframework.context.annotation.Bean;
 
 public interface EamilService {
 	
-	public String checkEamil(Object obj);
+	public String sendEamil(Object obj);
 }

@@ -2,7 +2,7 @@ package com.loginAndSignUpForm.email;
 
 import java.util.Random;
 
-public class CreateRandomNumber {
+public class RandomNumber {
 	
 	public String makeRandomNumber() {
 		String randomNumber = "";
