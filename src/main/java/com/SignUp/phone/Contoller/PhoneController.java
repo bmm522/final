@@ -22,7 +22,7 @@ public class PhoneController {
 	@ResponseBody
 	public Map<String, Object> sendMessage(PhoneVo phoneVo){
 		HashMap<String,Object> authenticationNumber = new HashMap<String,Object>();
-		authenticationNumber.put("authenticationNumber", ps.sendMessage(phoneVo.getPhoneNumber()));
+		authenticationNumber.put("authenticationNumber", ps.sendMessage(phoneVo));
 		return authenticationNumber;
 	}
 }
