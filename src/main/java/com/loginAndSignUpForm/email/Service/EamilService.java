@@ -1,8 +1,10 @@
 package com.loginAndSignUpForm.email.Service;
 
-import org.springframework.context.annotation.Bean;
+import java.util.Map;
+
+import com.loginAndSignUpForm.email.EmailVo;
 
 public interface EamilService {
 	
-	public String sendEamil(Object obj);
+	public String sendEamil(EmailVo emailVo);
 }
