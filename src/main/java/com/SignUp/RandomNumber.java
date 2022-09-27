@@ -1,4 +1,4 @@
-package com.SignUp.email.randomNumber;
+package com.SignUp;
 
 import java.util.Random;
 
