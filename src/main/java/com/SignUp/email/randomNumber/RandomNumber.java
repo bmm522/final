@@ -1,9 +1,8 @@
-package com.loginAndSignUpForm.email;
+package com.SignUp.email.randomNumber;
 
 import java.util.Random;
 
 public class RandomNumber {
-	
 	public String makeRandomNumber() {
 		String randomNumber = "";
 		Random random = new Random();

@@ -1,13 +1,10 @@
-package com.loginAndSignUpForm.email.Service;
-
-import java.util.HashMap;
-import java.util.Map;
+package com.SignUp.email.Service;
 
 import org.springframework.stereotype.Service;
 
-import com.loginAndSignUpForm.email.EmailAuthenticationCode;
-import com.loginAndSignUpForm.email.EmailVo;
-import com.loginAndSignUpForm.email.RandomNumber;
+import com.SignUp.email.API.EmailAuthenticationCode;
+import com.SignUp.email.VO.EmailVo;
+import com.SignUp.email.randomNumber.RandomNumber;
 
 @Service
 public class EmailServiceImpl implements EamilService {

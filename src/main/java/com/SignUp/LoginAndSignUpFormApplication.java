@@ -1,4 +1,4 @@
-package com.loginAndSignUpForm;
+package com.SignUp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

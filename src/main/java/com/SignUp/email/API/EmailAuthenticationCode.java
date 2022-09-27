@@ -1,4 +1,4 @@
-package com.loginAndSignUpForm.email;
+package com.SignUp.email.API;
 
 import java.util.Properties;
 
@@ -9,7 +9,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class EmailAuthenticationCode {
-	
 	/** 메일 HOST **/
 	private static final String HOST = "smtp.naver.com";
 	/** 메일 PORT **/

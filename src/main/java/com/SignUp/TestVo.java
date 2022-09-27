@@ -1,4 +1,4 @@
-package com.loginAndSignUpForm;
+package com.SignUp;
 
 import lombok.Getter;
 import lombok.Setter;

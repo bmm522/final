@@ -1,4 +1,4 @@
-package com.loginAndSignUpForm.email.Controller;
+package com.SignUp.email.Controller;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.loginAndSignUpForm.email.EmailVo;
-import com.loginAndSignUpForm.email.Service.EmailServiceImpl;
+import com.SignUp.email.Service.EmailServiceImpl;
+import com.SignUp.email.VO.EmailVo;
 
 @CrossOrigin(origins="http://127.0.0.1:5501/", allowedHeaders="http://127.0.0.1:5501/")
 @RestController
