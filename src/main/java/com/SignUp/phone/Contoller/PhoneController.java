@@ -3,6 +3,7 @@ package com.SignUp.phone.Contoller;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,8 +16,8 @@ import com.SignUp.phone.VO.PhoneVo;
 @RestController
 public class PhoneController {
 	
-	
-	PhoneServiceImpl ps = new PhoneServiceImpl();
+	@Autowired
+	private PhoneServiceImpl ps ;
 	
 	@PostMapping("/signup/phone/authenticationNumber")
 	@ResponseBody
