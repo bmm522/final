@@ -37,7 +37,7 @@
                      <input type="text" class="input-field" placeholder="Your Name" required>
                      <h5>이메일</h5>
                      <div id ='emailForm'>
-	                     <input type="email"  id='email' class="input-email" placeholder="Your Email" onkeydown="checkEmail();" onblur="outFocusFromEmail();" required>
+	                     <input type="email"  id='email' class="input-email" placeholder="Your Email" onkeydown="checkEmail();" required>
                          <input type="hidden" id="randomnumber">
 	                     <button type="button" id='emailButton' class="w-btn-outline w-btn-yellow-outline" onclick="comeButton();">인증번호</button>
 	                     
@@ -52,14 +52,14 @@
                      <input type="text" class="input-field" placeholder="Your Birthday (ex 19960205)" required>
                      <h5>전화번호</h5>
                      <div id ='emailForm'>
-	                     <input type="tel"  id='phoneNumber' class="input-email" placeholder="Your PhoneNumber" onkeydown="checkEmail();" onblur="outFocusFromEmail();" required>
+	                     <input type="tel"  id='phoneNumber' class="input-email" placeholder="Your PhoneNumber"  required>
                          <input type="hidden" id="authenticationNumber">
 	                     <button type="button" id='phoneButton' class="w-btn-outline w-btn-yellow-outline">전송</button>
                     </div>
-                    <div class='alert' id='alertCheckRandomNumber'></div>
-                    <div id ='emailForm'>
-                        <input type="text" class="input-randomNumber"  id='inputRandomNumber' placeholder="인증번호 확인">
-                        <button type="button" id='checkButton' class="w-btn-outline w-btn-yellow-outline" onclick="alertCheckRandomNumber();">확인</button>
+                    <div class='alert' id='alertSubmit'></div>
+                    <div id ='PhoneForm'>
+                        <input type="text" class="input-randomNumber"  id='inputAuthenticationNumber' placeholder="인증번호 확인">
+                        <button type="button" id='checkAuthenticationNumberButton' class="w-btn-outline w-btn-yellow-outline">확인</button>
                     </div>          
                     <div class='alert' id='alertCheck'></div>
                      
@@ -77,6 +77,7 @@
             </div>
         </div>
  <script src="../js/LoginAndSignUpForm.js"></script>
+ <script src="../js/SignUp_Phone.js"></script>
  <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
  <script src="../js/LoginAndSignUpForm_DaumAddressAPI.js"></script>
 

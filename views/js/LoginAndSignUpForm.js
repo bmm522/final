@@ -105,49 +105,9 @@ $("#emailButton").click(function(){
 
 });
 
-// function TIMER(){
-//     let time = 180000;
-//     let min = 3;
-//     let sec = 60;
-//     document.getElementById('alertCheckRandomNumber')
-//     limitTime = setInterval(function(){
-//         console.log(typeof time);
-//         time = time - 1000; 
-//         min = time/(60*1000);
-
-//         if(sec>0){
-//             sec = sec-1;
-//             document.getElementById('alertCheckRandomNumber').innerHTML="유효 시간 : "+Math.floor(min)+' : '+sec;
-//         }
-
-//         if(sec===0){
-//             sec=60;
-//             document.getElementById('alertCheckRandomNumber').innerHTML="유효 시간 : " + Math.floor(min) + ' : ' + '00';
-//         }
-//     }, 1000)
+// function outFocusFromCheckRandomNumber() {
+//     document.getElementById('alertCheckRandomNumber').innerHTML = '';
 // }
-
-// setTimeout(function(){
-//     clearInterval(limitTime);
-// }, 5000);
-
-// function checkNumber(){
-//     const randomNumber = document.getElementById("randomnumber").value;
-//     const inputRandomNumber = document.getElementById("inputRandomNumber").value;
-//     let notification = document.getElementById('alertCheckRandomNumber');
-//     console.log('실행');
-//     if(randomNumber == inputRandomNumber){
-//         notification.style.color='yellowgreen';
-// 		notification.innerHTML = 'Ok!';
-//     } else {
-//         notification.style.color='red';
-// 		notification.innerHTML = '일치하지 않습니다.';
-//     }
-// }
-
-function outFocusFromCheckRandomNumber() {
-    document.getElementById('alertCheckRandomNumber').innerHTML = '';
-}
 
 function comeButton(){
     let button = document.getElementById('checkButton');
@@ -162,36 +122,21 @@ const checkRandomNumber = () => {
     if(randomNumber == inputRandomNumber){
 		return true;
     } else {
-		alert('올바른 인증번호를 입력해주세요.');
+		// alert('올바른 이메일 인증코드를 입력해주세요.');
 		return false;
     }	
 }
 
 const alertCheckRandomNumber =() =>{
+	let button = document.getElementById('checkButton');
+	
 	if(checkRandomNumber()){
-		alert('인증되었습니다.');;
+		alert('인증되었습니다.');
+		button.style.display='none';
+		document.getElementById('alertCheckRandomNumber').innerHTML = 'Ok!';
+		
 	} else {
-		alert('올바른 인증번호를 입력해주세요.');
+		alert('올바른 이메일 인증코드를 입력해주세요.');
+	
 	}
 }
-
-$("#phoneButton").click(function(){
-    var params={
-        phoneNumber : $("#phoneNumber").val(),
-        authenticationNumber : $("#authenticationNumber").val()
-    }
-    $.ajax({
-        type :"POST",
-        url:"http://localhost:8080/signup/phone/authenticationNumber",
-        data : params,
-        success:function(res){
-            document.getElementById("randomnumber").value=res.randomNumber;
-            // TIMER();
-            
-        },
-        error : function(XMLHttpRequest, textStatus, errorThrown){
-            alert("오류")
-        }
-    });
-
-});
