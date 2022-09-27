@@ -37,8 +37,7 @@ dependencies {
 	compile "org.springframework:spring-context-support"
 	compile "com.sun.mail:javax.mail"
 	
-	// https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple
-implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+	
 
 	
 

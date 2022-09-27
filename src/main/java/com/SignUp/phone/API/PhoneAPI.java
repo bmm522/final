@@ -30,7 +30,7 @@ public class PhoneAPI {
 		params.put("from", fromNumber);
 		params.put("type", "SMS");
 		params.put("text", "[grabMe] 인증번호 "+rn.makeRandomNumber()+" 를 입력하세요.");
-		params.put("app_version", "test app 1.2"); // application name and version
+		params.put("LoginAndSingUpForm", "test app 1.2"); // application name and version
 
 		try {
 			JSONObject obj = (JSONObject) coolsms.send(params);
