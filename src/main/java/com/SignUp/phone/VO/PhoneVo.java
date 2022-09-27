@@ -8,5 +8,5 @@ import lombok.Setter;
 public class PhoneVo {
 	
 	private String  phoneNumber;
-	private String authenticationNumber;
+
 }
