@@ -1,4 +1,4 @@
-package com;
+package com.LoginAndSignUp.SignUp;
 
 
 import org.springframework.boot.SpringApplication;
