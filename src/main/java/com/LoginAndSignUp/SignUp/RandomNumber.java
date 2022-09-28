@@ -1,4 +1,4 @@
-package com.SignUp;
+package com.LoginAndSignUp.SignUp;
 
 import java.util.Random;
 

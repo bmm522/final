@@ -1,6 +1,6 @@
 package com.SignUp.phone.Service;
 
-import com.SignUp.RandomNumber;
+import com.LoginAndSignUp.SignUp.RandomNumber;
 import com.SignUp.phone.API.PhoneAPI;
 import com.SignUp.phone.VO.PhoneVo;
 

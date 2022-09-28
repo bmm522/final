@@ -2,7 +2,7 @@ package com.SignUp.email.Service;
 
 import org.springframework.stereotype.Service;
 
-import com.SignUp.RandomNumber;
+import com.LoginAndSignUp.SignUp.RandomNumber;
 import com.SignUp.email.API.EmailAuthenticationCode;
 import com.SignUp.email.VO.EmailVo;
 

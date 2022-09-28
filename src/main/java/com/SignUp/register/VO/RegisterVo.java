@@ -19,6 +19,6 @@ public class RegisterVo {
 	private String userEmail;
 	private String userBirth;
 	private String userPhone;
-	private String userAdress;
+	private String userAddress;
 	
 }
