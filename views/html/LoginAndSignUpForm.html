@@ -24,27 +24,27 @@
                    <!--  <input type="checkbox" class="checkbox"><span>Remember Password</span> -->
                     <button class="submit">Login</button>
                 </form>
-                <form id="register" action="" class="input-group" >
+                <form id="register" class="input-group" onsubmit="return checkSubmit();" >
                     <h5>아이디</h5>
-                    <input type="text" class="input-field" placeholder="Enter your new ID" required>
+                    <input type="text" id="userId" class="input-field" placeholder="Enter your new ID" required>
                    <h5>비밀번호</h5>
                     <input type="password" class="input-field" id="password" placeholder="Enter your new Password" onkeydown="inputPassword();" onblur="outFocusFromPassword();" required>
                     <div class='alert' id='alertInputPassword'></div>
                     <h5>비밀번호 확인</h5>
-                    <input type="password" class="input-field" id="checkPassword" placeholder="Re-enter Password"  onkeyup="check();"  onblur="outFocusFromCheck();" required>
+                    <input type="password" class="input-field" id="checkPassword" placeholder="Re-enter Password"  onkeyup="check();" onblur="outFocusFromCheck();" required>
                 	  <div class='alert' id='alertCheckPassword'></div>
                      <h5>이름</h5>
-                     <input type="text" class="input-field" placeholder="Your Name" required>
+                     <input type="text" id="userName" class="input-field" placeholder="Your Name" required>
                      <h5>이메일</h5>
                      <div id ='emailForm'>
-	                     <input type="email"  id='email' class="input-email" placeholder="Your Email" onkeydown="checkEmail();" required>
+	                     <input type="email"  id='email' class="input-email" placeholder="Your Email" onkeydown="checkEmail();" onblur="outFocusFromEmail();" required>
                          <input type="hidden" id="randomnumber">
 	                     <button type="button" id='emailButton' class="w-btn-outline w-btn-yellow-outline" onclick="comeButton();">인증번호</button>
 	                     
                     </div>
                     <div class='alert' id='alertCheckEmail'></div>
                     <div id ='emailForm'>
-                        <input type="text" class="input-randomNumber"  id='inputRandomNumber' placeholder="인증코드 확인" onblur="outFocusFromCheckRandomNumber()" >
+                        <input type="text" class="input-randomNumber"  id='inputRandomNumber' placeholder="인증코드 확인"  >
                         <button type="button" id='checkButton' class="w-btn-outline w-btn-yellow-outline" onclick="alertCheckRandomNumber();">확인</button>
                     </div>          
                     <div class='alert' id='alertCheckRandomNumber'></div>
@@ -70,17 +70,21 @@
 					<input type="text" id="extraAddress"  class="input-field"  placeholder="참고항목">
 
                    <br>
-                    <button class="submit" onclick="return checkRandomNumber();">REGISTER</button>
+                    <button class="submit" id="submit">REGISTER</button>
                     <br><br>
               
                 </form>
             </div>
         </div>
  <script src="../js/LoginAndSignUpForm.js"></script>
- <script src="../js/SignUp_Phone.js"></script>
+ <script src="../js/SignUp_EmailAndPhone.js"></script>
+ <script src="../js/SignUp_submit.js"></script>
  <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
  <script src="../js/LoginAndSignUpForm_DaumAddressAPI.js"></script>
 
+
     </body>
 </html> 
+
+
 
