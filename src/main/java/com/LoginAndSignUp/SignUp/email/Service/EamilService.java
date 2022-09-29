@@ -1,6 +1,6 @@
 package com.LoginAndSignUp.SignUp.email.Service;
 
-import com.LoginAndSignUp.SignUp.email.VO.EmailVo;
+import com.LoginAndSignUp.SignUp.email.entity.EmailVo;
 
 public interface EamilService {
 	

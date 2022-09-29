@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.LoginAndSignUp.SignUp.email.Service.EmailServiceImpl;
-import com.LoginAndSignUp.SignUp.email.VO.EmailVo;
+import com.LoginAndSignUp.SignUp.email.entity.EmailVo;
 
 @CrossOrigin(origins="http://127.0.0.1:5501/", allowedHeaders="http://127.0.0.1:5501/")
 @RestController

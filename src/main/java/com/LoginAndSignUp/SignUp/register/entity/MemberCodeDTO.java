@@ -29,4 +29,13 @@ public class MemberCodeDTO {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	public MemberCodeDTO(String userId, String salt, String userEmail, String userPhone) {
+		this.userId = userId;
+		this.salt = salt;
+		this.userEmail = userEmail;
+		this.userPhone = userPhone;
+	}
+	
+	
 }

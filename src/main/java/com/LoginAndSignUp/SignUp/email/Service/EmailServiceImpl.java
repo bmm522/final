@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.LoginAndSignUp.SignUp.RandomNumber;
 import com.LoginAndSignUp.SignUp.email.API.EmailAuthenticationCode;
-import com.LoginAndSignUp.SignUp.email.VO.EmailVo;
+import com.LoginAndSignUp.SignUp.email.entity.EmailVo;
 
 @Service
 public class EmailServiceImpl implements EamilService {
