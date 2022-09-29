@@ -24,7 +24,7 @@
                    <!--  <input type="checkbox" class="checkbox"><span>Remember Password</span> -->
                     <button class="submit">Login</button>
                 </form>
-                <form id="register" class="input-group" onsubmit="return checkSubmit();" >
+                <form id="register" class="input-group">
                     <h5>아이디</h5>
                     <input type="text" id="userId" class="input-field" placeholder="Enter your new ID" required>
                    <h5>비밀번호</h5>
@@ -44,21 +44,21 @@
                     </div>
                     <div class='alert' id='alertCheckEmail'></div>
                     <div id ='emailForm'>
-                        <input type="text" class="input-randomNumber"  id='inputRandomNumber' placeholder="인증코드 확인"  >
+                        <input type="text" class="input-randomNumber"  id='inputRandomNumber' placeholder="인증코드 확인" disabled >
                         <button type="button" id='checkButton' class="w-btn-outline w-btn-yellow-outline" onclick="alertCheckRandomNumber();">확인</button>
                     </div>          
                     <div class='alert' id='alertCheckRandomNumber'></div>
                      <h5>생일</h5>
-                     <input type="text" class="input-field" placeholder="Your Birthday (ex 19960205)" required>
+                     <input type="text" id='birth' class="input-field" placeholder="Your Birthday (ex 19960205)" required>
                      <h5>전화번호</h5>
                      <div id ='emailForm'>
 	                     <input type="tel"  id='phoneNumber' class="input-email" placeholder="Your PhoneNumber"  required>
-                         <input type="hidden" id="authenticationNumber">
+                         <input type="hidden" id="authenticationNumber" disabled>
 	                     <button type="button" id='phoneButton' class="w-btn-outline w-btn-yellow-outline">전송</button>
                     </div>
                     <div class='alert' id='alertSubmit'></div>
                     <div id ='PhoneForm'>
-                        <input type="text" class="input-randomNumber"  id='inputAuthenticationNumber' placeholder="인증번호 확인">
+                        <input type="text" class="input-randomNumber"  id='inputAuthenticationNumber' placeholder="인증번호 확인" disabled>
                         <button type="button" id='checkAuthenticationNumberButton' class="w-btn-outline w-btn-yellow-outline">확인</button>
                     </div>          
                     <div class='alert' id='alertCheck'></div>

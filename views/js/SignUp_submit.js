@@ -4,7 +4,8 @@ $("#submit").click(function(){
         userPwd : $("#password").val(),
         userName : $("#userName").val(),
         userEmail : $("#email").val(),
-        userBirth : $("#email").val(),
+        userBirth : $("#birth").val(),
+        userPhone : $("#phoneNumber").val(),
         userAddress : $("#address").val()
                      +$("#postcode").val()
                      +$("#extraAddress").val()
@@ -24,3 +25,19 @@ $("#submit").click(function(){
         }
     });
 });
+
+// var registerData = {
+//     dataType:'json',
+//     url:"http://localhost:8080/signup/register",
+//     success:function(res){
+//         alert('성공');
+//     },
+//     error:function(res){
+//         alert('오류');
+//     }
+// }
+
+// $('#submit').submit(function(){
+//     $(this).ajaxSubmit(registerData);
+//     return false;
+// })
