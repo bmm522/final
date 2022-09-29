@@ -16,7 +16,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class MemberCodeEntity {
+public class MemberCode {
 	
 	@Column(name="USERID")
 	private String userId;
@@ -30,7 +30,7 @@ public class MemberCodeEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	public MemberCodeEntity(String userId, String salt, String userEmail, String userPhone) {
+	public MemberCode(String userId, String salt, String userEmail, String userPhone) {
 		this.userId = userId;
 		this.salt = salt;
 		this.userEmail = userEmail;

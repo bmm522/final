@@ -2,30 +2,37 @@ package com.LoginAndSignUp.SignUp.register.Service;
 
 import java.util.ArrayList;
 
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.LoginAndSignUp.CodeEncryption.codeObject.CodeEntity;
 import com.LoginAndSignUp.CodeEncryption.main.CodeEncryptionOfOneWay;
-import com.LoginAndSignUp.SignUp.register.DAO.RegisterDAO;
-import com.LoginAndSignUp.SignUp.register.DAO.RegisterDAOImpl;
+import com.LoginAndSignUp.SignUp.register.DAO.MemberCodeDAO;
+import com.LoginAndSignUp.SignUp.register.DAO.MemberCodeDAOImpl;
+import com.LoginAndSignUp.SignUp.register.DAO.MemberDAO;
+import com.LoginAndSignUp.SignUp.register.DAO.MemberDAOImpl;
 import com.LoginAndSignUp.SignUp.register.entity.RegisterVo;
-import com.LoginAndSignUp.SignUp.register.repository.MemberCodeEntity;
-import com.LoginAndSignUp.SignUp.register.repository.MemberEntity;
+import com.LoginAndSignUp.SignUp.register.repository.MemberCode;
+import com.LoginAndSignUp.SignUp.register.repository.Member;
 
-@Component
+@Service
 public class RegisterServiceImpl  implements RegisterService{
 	
-	RegisterDAO registerDAO = new RegisterDAOImpl();
+	@Autowired
+	private MemberDAOImpl memberDAO;
+	
+	@Autowired
+	private MemberCodeDAOImpl memberCodeDAO;
 	
 	public void registerMember(RegisterVo registerVo) {
 		ArrayList<CodeEntity> cdArr =changePwdToHashCode(registerVo.getUserId(), registerVo.getUserPwd());
-		registerDAO.registerMember(getMemberDTO(registerVo,cdArr.get(0).getHashCode()));
-		 registerDAO.registerMemberCode(getMemberCodeDTO(registerVo,cdArr.get(0).getSaltCode()));
+		memberDAO.registerMember(getMemberDTO(registerVo,cdArr.get(0).getHashCode()));
+		memberCodeDAO.registerMemberCode(getMemberCodeDTO(registerVo,cdArr.get(0).getSaltCode()));
 		
 	}
 	
-	private MemberEntity getMemberDTO(RegisterVo registerVo, String hashCode) {
-		return new MemberEntity(registerVo.getUserId()
+	private Member getMemberDTO(RegisterVo registerVo, String hashCode) {
+		return new Member(registerVo.getUserId()
 												   ,hashCode
 					  							   ,registerVo.getUserName()
 												   ,registerVo.getUserEmail()
@@ -34,8 +41,8 @@ public class RegisterServiceImpl  implements RegisterService{
 								                   ,registerVo.getUserAddress());
 	}
 	
-	private MemberCodeEntity getMemberCodeDTO(RegisterVo registerVo, String salt) {
-		return new MemberCodeEntity(registerVo.getUserId()
+	private MemberCode getMemberCodeDTO(RegisterVo registerVo, String salt) {
+		return new MemberCode(registerVo.getUserId()
 															 ,salt
 															 ,registerVo.getUserEmail()
 															 ,registerVo.getUserPhone());

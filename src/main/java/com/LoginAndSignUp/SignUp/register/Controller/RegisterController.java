@@ -1,5 +1,6 @@
 package com.LoginAndSignUp.SignUp.register.Controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -12,12 +13,19 @@ import com.LoginAndSignUp.SignUp.register.entity.RegisterVo;
 @RestController
 public class RegisterController {
 	
-	
-	RegisterServiceImpl rs = new RegisterServiceImpl();
+	@Autowired
+	private RegisterServiceImpl rs;
 	
 	@PostMapping("/signup/register")
 	@ResponseBody
 	public void registerMember(RegisterVo registerVo){
+		System.out.println(registerVo.getUserId());
+		System.out.println(registerVo.getUserPwd());
+		System.out.println(registerVo.getUserName());
+		System.out.println(registerVo.getUserBirth());
+		System.out.println(registerVo.getUserAddress());
+		System.out.println(registerVo.getUserEmail());
+		System.out.println(registerVo.getUserPhone());
 		rs.registerMember(registerVo);
 	}
 }
