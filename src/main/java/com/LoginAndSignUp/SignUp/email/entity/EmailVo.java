@@ -1,4 +1,4 @@
-package com.LoginAndSignUp.SignUp.email.VO;
+package com.LoginAndSignUp.SignUp.email.entity;
 
 import lombok.Getter;
 import lombok.Setter;
