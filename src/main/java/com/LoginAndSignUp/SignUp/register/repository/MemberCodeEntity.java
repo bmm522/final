@@ -1,4 +1,4 @@
-package com.LoginAndSignUp.SignUp.register.entity;
+package com.LoginAndSignUp.SignUp.register.repository;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,7 +16,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class MemberCodeDTO {
+public class MemberCodeEntity {
 	
 	@Column(name="USERID")
 	private String userId;
@@ -30,7 +30,7 @@ public class MemberCodeDTO {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	public MemberCodeDTO(String userId, String salt, String userEmail, String userPhone) {
+	public MemberCodeEntity(String userId, String salt, String userEmail, String userPhone) {
 		this.userId = userId;
 		this.salt = salt;
 		this.userEmail = userEmail;

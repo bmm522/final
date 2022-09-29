@@ -34,7 +34,7 @@ public class PhoneAPI {
 			System.out.println("api실행");
 			System.out.println(obj.toString());
 		} catch (CoolsmsException e) {
-			System.out.println("apifail");
+			System.out.println("api에러");
 			System.out.println(e.getMessage());
 			System.out.println(e.getCode());
 		}

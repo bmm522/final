@@ -1,9 +1,12 @@
 package com.LoginAndSignUp.SignUp.phone.Service;
 
+import org.springframework.stereotype.Service;
+
 import com.LoginAndSignUp.SignUp.RandomNumber;
 import com.LoginAndSignUp.SignUp.phone.API.PhoneAPI;
 import com.LoginAndSignUp.SignUp.phone.entity.PhoneVo;
 
+@Service
 public class PhoneServiceImpl implements PhoneService {
 	PhoneAPI pa = new PhoneAPI();
 	

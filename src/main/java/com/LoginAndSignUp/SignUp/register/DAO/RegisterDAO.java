@@ -1,12 +1,12 @@
 package com.LoginAndSignUp.SignUp.register.DAO;
 
-import com.LoginAndSignUp.SignUp.register.entity.MemberCodeDTO;
-import com.LoginAndSignUp.SignUp.register.entity.MemberDTO;
+import com.LoginAndSignUp.SignUp.register.repository.MemberCodeEntity;
+import com.LoginAndSignUp.SignUp.register.repository.MemberEntity;
 
 public interface RegisterDAO {
 
-	public void registerMember(MemberDTO memberDTO);
+	public void registerMember(MemberEntity memberDTO);
 
-	public void registerMemberCode(MemberCodeDTO memberCodeDTO);
+	public void registerMemberCode(MemberCodeEntity memberCodeDTO);
 
 }

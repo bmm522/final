@@ -1,27 +1,38 @@
 package com.LoginAndSignUp.SignUp.register.DAO;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import com.LoginAndSignUp.SignUp.register.entity.MemberCodeDTO;
-import com.LoginAndSignUp.SignUp.register.entity.MemberDTO;
+import com.LoginAndSignUp.SignUp.register.repository.MemberCodeEntity;
 import com.LoginAndSignUp.SignUp.register.repository.MemberCodeRepository;
+import com.LoginAndSignUp.SignUp.register.repository.MemberEntity;
 import com.LoginAndSignUp.SignUp.register.repository.MemberRepository;
 
+
+@Service
 public class RegisterDAOImpl implements RegisterDAO{
 
-	@Autowired
-	private MemberRepository memberRepository;
+	private final MemberRepository memberRepository;
+	
+	private final MemberCodeRepository memberCodeRepository;
 	
 	@Autowired
-	private MemberCodeRepository memberCodeRepository;
+	public RegisterDAOImpl(MemberRepository memberRepository) {
+		this.memberRepository = memberRepository;
+	}
+	
+	@Autowired
+	public RegisterDAOImpl(MemberCodeRepository memberCodeRepository) {
+		this.memberCodeRepository=memberCodeRepository;
+	}
 	
 	@Override
-	public void registerMember(MemberDTO memberDTO) {
+	public void registerMember(MemberEntity memberDTO) {
 		memberRepository.save(memberDTO);
 	}
 
 	@Override
-	public void registerMemberCode(MemberCodeDTO memberCodeDTO) {
+	public void registerMemberCode(MemberCodeEntity memberCodeDTO) {
 		memberCodeRepository.save(memberCodeDTO);	
 	}
 	

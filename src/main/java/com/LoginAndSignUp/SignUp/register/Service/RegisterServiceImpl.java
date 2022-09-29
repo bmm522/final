@@ -2,17 +2,17 @@ package com.LoginAndSignUp.SignUp.register.Service;
 
 import java.util.ArrayList;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import com.LoginAndSignUp.CodeEncryption.codeObject.CodeEntity;
 import com.LoginAndSignUp.CodeEncryption.main.CodeEncryptionOfOneWay;
 import com.LoginAndSignUp.SignUp.register.DAO.RegisterDAO;
 import com.LoginAndSignUp.SignUp.register.DAO.RegisterDAOImpl;
-import com.LoginAndSignUp.SignUp.register.entity.MemberCodeDTO;
-import com.LoginAndSignUp.SignUp.register.entity.MemberDTO;
 import com.LoginAndSignUp.SignUp.register.entity.RegisterVo;
+import com.LoginAndSignUp.SignUp.register.repository.MemberCodeEntity;
+import com.LoginAndSignUp.SignUp.register.repository.MemberEntity;
 
-@Service
+@Component
 public class RegisterServiceImpl  implements RegisterService{
 	
 	RegisterDAO registerDAO = new RegisterDAOImpl();
@@ -24,8 +24,8 @@ public class RegisterServiceImpl  implements RegisterService{
 		
 	}
 	
-	private MemberDTO getMemberDTO(RegisterVo registerVo, String hashCode) {
-		return new MemberDTO(registerVo.getUserId()
+	private MemberEntity getMemberDTO(RegisterVo registerVo, String hashCode) {
+		return new MemberEntity(registerVo.getUserId()
 												   ,hashCode
 					  							   ,registerVo.getUserName()
 												   ,registerVo.getUserEmail()
@@ -34,8 +34,8 @@ public class RegisterServiceImpl  implements RegisterService{
 								                   ,registerVo.getUserAddress());
 	}
 	
-	private MemberCodeDTO getMemberCodeDTO(RegisterVo registerVo, String salt) {
-		return new MemberCodeDTO(registerVo.getUserId()
+	private MemberCodeEntity getMemberCodeDTO(RegisterVo registerVo, String salt) {
+		return new MemberCodeEntity(registerVo.getUserId()
 															 ,salt
 															 ,registerVo.getUserEmail()
 															 ,registerVo.getUserPhone());
