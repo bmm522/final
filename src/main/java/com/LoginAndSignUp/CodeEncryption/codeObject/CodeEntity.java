@@ -1,5 +1,10 @@
 package  com.LoginAndSignUp.CodeEncryption.codeObject;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class CodeEntity {
 	private String idCode;
 	private String saltCode;
@@ -12,24 +17,5 @@ public class CodeEntity {
 		this.saltCode=saltCode;
 		this.hashCode=hashCode;
 	}
-	public String getIdCode() {
-		return idCode;
-	}
-	public void setIdCode(String idCode) {
-		this.idCode = idCode;
-	}
-	public String getSaltCode() {
-		return saltCode;
-	}
-	public void setSaltCode(String saltCode) {
-		this.saltCode = saltCode;
-	}
-	public String getHashCode() {
-		return hashCode;
-	}
-	public void setHashCode(String hashCode) {
-		this.hashCode = hashCode;
-	}
-	
 	
 }

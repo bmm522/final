@@ -6,16 +6,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder(builderMethodName="MemberBuilder")
 public class Member {
 	
 	@Id
@@ -36,8 +37,9 @@ public class Member {
 	@Column(name="USERADDRESS")
 	private String userAddress;
 	
-	public Member(String userId, String userPwd, String userName, String userEmail, String userBirth,
-			String userPhone, String userAddress) {
+	
+	public Member(String userId, String userPwd, String userName, String userEmail, String userBirth, String userPhone,
+			String userAddress) {
 		this.userId = userId;
 		this.userPwd = userPwd;
 		this.userName = userName;
@@ -46,7 +48,6 @@ public class Member {
 		this.userPhone = userPhone;
 		this.userAddress = userAddress;
 	}
-	
 	
 	
 }

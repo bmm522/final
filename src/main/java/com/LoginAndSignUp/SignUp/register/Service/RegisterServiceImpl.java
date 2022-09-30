@@ -11,9 +11,10 @@ import com.LoginAndSignUp.SignUp.register.DAO.MemberCodeDAO;
 import com.LoginAndSignUp.SignUp.register.DAO.MemberCodeDAOImpl;
 import com.LoginAndSignUp.SignUp.register.DAO.MemberDAO;
 import com.LoginAndSignUp.SignUp.register.DAO.MemberDAOImpl;
-import com.LoginAndSignUp.SignUp.register.entity.RegisterVo;
+import com.LoginAndSignUp.SignUp.register.DTO.RegisterDTO;
 import com.LoginAndSignUp.SignUp.register.repository.MemberCode;
 import com.LoginAndSignUp.SignUp.register.repository.Member;
+import com.LoginAndSignUp.SignUp.register.repository.Member.MemberBuilder;
 
 @Service
 public class RegisterServiceImpl  implements RegisterService{
@@ -24,28 +25,32 @@ public class RegisterServiceImpl  implements RegisterService{
 	@Autowired
 	private MemberCodeDAOImpl memberCodeDAO;
 	
-	public void registerMember(RegisterVo registerVo) {
-		ArrayList<CodeEntity> cdArr =changePwdToHashCode(registerVo.getUserId(), registerVo.getUserPwd());
-		memberDAO.registerMember(getMemberDTO(registerVo,cdArr.get(0).getHashCode()));
-		memberCodeDAO.registerMemberCode(getMemberCodeDTO(registerVo,cdArr.get(0).getSaltCode()));
+	public void registerMember(RegisterDTO registerDTO) {
+		ArrayList<CodeEntity> cdArr =changePwdToHashCode(registerDTO.getUserId(), registerDTO.getUserPwd());
+		memberDAO.registerMember(getMemberDTO(registerDTO,cdArr.get(0).getHashCode()));
+		memberCodeDAO.registerMemberCode(getMemberCodeDTO(registerDTO,cdArr.get(0).getSaltCode()));
 		
 	}
 	
-	private Member getMemberDTO(RegisterVo registerVo, String hashCode) {
-		return new Member(registerVo.getUserId()
-												   ,hashCode
-					  							   ,registerVo.getUserName()
-												   ,registerVo.getUserEmail()
-									               ,registerVo.getUserBirth()
-									               ,registerVo.getUserPhone()
-								                   ,registerVo.getUserAddress());
+	private Member getMemberDTO(RegisterDTO registerDTO, String hashCode) {
+		return  Member.MemberBuilder()
+					 	.userId(registerDTO.getUserId())
+					 	.userPwd(hashCode)
+						.userName(registerDTO.getUserName())
+						.userEmail(registerDTO.getUserEmail())
+						.userBirth(registerDTO.getUserEmail())
+						.userPhone(registerDTO.getUserPhone())
+						.userAddress(registerDTO.getUserAddress())
+						.build();
 	}
 	
-	private MemberCode getMemberCodeDTO(RegisterVo registerVo, String salt) {
-		return new MemberCode(registerVo.getUserId()
-															 ,salt
-															 ,registerVo.getUserEmail()
-															 ,registerVo.getUserPhone());
+	private MemberCode getMemberCodeDTO(RegisterDTO registerDTO, String salt) {
+		return MemberCode.MemberCodeBuilder()
+						.userId(registerDTO.getUserId())
+						.salt(salt)
+						.userEmail(registerDTO.getUserEmail())
+						.userPhone(registerDTO.getUserPhone())
+						.build();
 	}
 	
 	private ArrayList<CodeEntity> changePwdToHashCode(String userId, String userPwd){

@@ -1,7 +1,7 @@
 package com.LoginAndSignUp.SignUp.phone.Service;
 
-import com.LoginAndSignUp.SignUp.phone.entity.PhoneVo;
+import com.LoginAndSignUp.SignUp.phone.DTO.PhoneDTO;
 
 public interface PhoneService {
-	public String sendMessage(PhoneVo phoneVo);
+	public String sendMessage(PhoneDTO phoneVo);
 }

@@ -7,15 +7,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder(builderMethodName="MemberCodeBuilder")
 public class MemberCode {
 	
 	@Column(name="USERID")
@@ -29,13 +30,6 @@ public class MemberCode {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
-	public MemberCode(String userId, String salt, String userEmail, String userPhone) {
-		this.userId = userId;
-		this.salt = salt;
-		this.userEmail = userEmail;
-		this.userPhone = userPhone;
-	}
 	
 	
 }

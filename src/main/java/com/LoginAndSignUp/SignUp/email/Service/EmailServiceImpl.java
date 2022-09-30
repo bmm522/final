@@ -4,15 +4,15 @@ import org.springframework.stereotype.Service;
 
 import com.LoginAndSignUp.SignUp.RandomNumber;
 import com.LoginAndSignUp.SignUp.email.API.EmailAuthenticationCode;
-import com.LoginAndSignUp.SignUp.email.entity.EmailVo;
+import com.LoginAndSignUp.SignUp.email.DTO.EmailDTO;
 
 @Service
 public class EmailServiceImpl implements EamilService {
 	
-	public String sendEamil(EmailVo emailVo) {
+	public String sendEamil(EmailDTO emailDTO) {
 		RandomNumber cr= new RandomNumber();
 		String randomNumber = cr.makeRandomNumber();
-		EmailAuthenticationCode.sendMail("테스트", randomNumber, emailVo.getEmail());
+		EmailAuthenticationCode.sendMail("테스트", randomNumber, emailDTO.getEmail());
 		return randomNumber;
 	}
 
