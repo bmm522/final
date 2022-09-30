@@ -22,8 +22,10 @@ public class CheckDuplicateOfIdController {
 	@PostMapping("/signup/id/checkresult")
 	@ResponseBody
 	public Map<String,Object> checkDuplicateOfId(CheckIdDTO checkIdDTO ){
+		
 		HashMap<String, Object> checkResult =  new HashMap<String, Object>();
 		checkResult.put("checkIdResult", checkDuplicateOfIdDAO.getCheckIdResult(checkIdDTO.getUserId()));
+		System.out.println(checkDuplicateOfIdDAO.getCheckIdResult(checkIdDTO.getUserId()));
 		return checkResult;
 	}
 }

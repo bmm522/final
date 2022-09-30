@@ -15,6 +15,6 @@ public class CheckDuplicateOfIdDAOImpl implements CheckDuplicateOfIdDAO{
 	final MemberRepository memberRepository;
 	
 	public boolean getCheckIdResult(String userId) {
-		memberRepository.existsByUserId(userId);
+		return memberRepository.existsByUserId(userId);
 	}
 }
