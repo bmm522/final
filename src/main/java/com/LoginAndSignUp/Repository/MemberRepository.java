@@ -1,4 +1,4 @@
-package com.LoginAndSignUp.SignUp.register.Repository;
+package com.LoginAndSignUp.Repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

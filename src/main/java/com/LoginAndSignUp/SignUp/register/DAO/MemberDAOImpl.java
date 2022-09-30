@@ -3,8 +3,8 @@ package com.LoginAndSignUp.SignUp.register.DAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.LoginAndSignUp.SignUp.register.Repository.Member;
-import com.LoginAndSignUp.SignUp.register.Repository.MemberRepository;
+import com.LoginAndSignUp.Repository.Member;
+import com.LoginAndSignUp.Repository.MemberRepository;
 
 import lombok.RequiredArgsConstructor;
 

@@ -1,6 +1,6 @@
 package com.LoginAndSignUp.SignUp.register.DAO;
 
-import com.LoginAndSignUp.SignUp.register.Repository.Member;
+import com.LoginAndSignUp.Repository.Member;
 
 public interface MemberDAO {
 

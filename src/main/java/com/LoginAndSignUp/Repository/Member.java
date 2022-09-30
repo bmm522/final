@@ -1,4 +1,4 @@
-package com.LoginAndSignUp.SignUp.register.Repository;
+package com.LoginAndSignUp.Repository;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
