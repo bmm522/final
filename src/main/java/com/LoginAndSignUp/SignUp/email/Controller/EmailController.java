@@ -17,13 +17,13 @@ import com.LoginAndSignUp.SignUp.email.Service.EmailServiceImpl;
 public class EmailController {
 	
 	
-	 EmailServiceImpl es = new EmailServiceImpl();
+	 EmailServiceImpl emailService = new EmailServiceImpl();
 	
 	@PostMapping("/signup/email/randomnumber")
 	@ResponseBody
 	public Map<String, Object> sendEmail(EmailDTO emailDTO) {
 		HashMap<String, Object> randomNumber = new HashMap<String, Object>();
-		randomNumber.put("randomNumber", es.sendEamil(emailDTO));
+		randomNumber.put("randomNumber", emailService.sendEamil(emailDTO));
 		return randomNumber;
 		
 		

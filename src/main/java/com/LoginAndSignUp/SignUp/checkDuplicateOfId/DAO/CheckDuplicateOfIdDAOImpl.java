@@ -1,23 +1,20 @@
-package com.LoginAndSignUp.SignUp.register.DAO;
+package com.LoginAndSignUp.SignUp.checkDuplicateOfId.DAO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.LoginAndSignUp.SignUp.register.Repository.Member;
 import com.LoginAndSignUp.SignUp.register.Repository.MemberRepository;
 
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Component
-public class MemberDAOImpl implements MemberDAO{
+public class CheckDuplicateOfIdDAOImpl implements CheckDuplicateOfIdDAO{
 	
 	@Autowired
 	final MemberRepository memberRepository;
-
-	@Override
-	public void registerMember(Member member) {
-		memberRepository.save(member);
-	}
 	
+	public boolean getCheckIdResult(String userId) {
+		memberRepository.existsByUserId(userId);
+	}
 }
