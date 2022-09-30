@@ -37,17 +37,4 @@ public class Member {
 	@Column(name="USERADDRESS")
 	private String userAddress;
 	
-	
-	public Member(String userId, String userPwd, String userName, String userEmail, String userBirth, String userPhone,
-			String userAddress) {
-		this.userId = userId;
-		this.userPwd = userPwd;
-		this.userName = userName;
-		this.userEmail = userEmail;
-		this.userBirth = userBirth;
-		this.userPhone = userPhone;
-		this.userAddress = userAddress;
-	}
-	
-	
 }

@@ -16,8 +16,8 @@ public class MemberDAOImpl implements MemberDAO{
 	final MemberRepository memberRepository;
 
 	@Override
-	public void registerMember(Member memberDTO) {
-		memberRepository.save(memberDTO);
+	public void registerMember(Member member) {
+		memberRepository.save(member);
 	}
 	
 }

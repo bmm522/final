@@ -16,8 +16,8 @@ public class MemberCodeDAOImpl implements MemberCodeDAO{
 	final MemberCodeRepository memberCodeRepository;
 	
 	@Override
-	public void registerMemberCode(MemberCode memberCodeEntity) {
-				memberCodeRepository.save(memberCodeEntity);
+	public void registerMemberCode(MemberCode memberCode) {
+				memberCodeRepository.save(memberCode);
 	}
 
 

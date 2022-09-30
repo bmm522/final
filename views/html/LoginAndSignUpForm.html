@@ -26,7 +26,10 @@
                 </form>
                 <form id="register" class="input-group">
                     <h5>아이디</h5>
-                    <input type="text" id="userId" class="input-field" placeholder="Enter your new ID" required>
+                    <input type="text" id="userId" class="input-id" placeholder="Enter your new ID" required>
+                    <input type="hidden" id="checkIdResult">
+                    <button type="button" id='idButton' class="w-btn-outline w-btn-yellow-outline" onclick="checkDuplicateOfId();">중복확인</button>
+                    <div class='alert' id='alertCheckId'></div>
                    <h5>비밀번호</h5>
                     <input type="password" class="input-field" id="password" placeholder="Enter your new Password" onkeydown="inputPassword();" onblur="outFocusFromPassword();" required>
                     <div class='alert' id='alertInputPassword'></div>
@@ -79,6 +82,7 @@
  <script src="../js/LoginAndSignUpForm.js"></script>
  <script src="../js/SignUp_EmailAndPhone.js"></script>
  <script src="../js/SignUp_submit.js"></script>
+ <script src="../js/SignUp_CheckDuplicateOfId.js"></script>
  <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
  <script src="../js/LoginAndSignUpForm_DaumAddressAPI.js"></script>
 
