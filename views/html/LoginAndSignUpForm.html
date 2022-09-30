@@ -18,17 +18,18 @@
                     <img src="img/tw.png" alt="twitter">
                     <img src="img/gl.png" alt="google">
                 </div> -->
-                <form id="login" action="" class="input-group">
-                    <input type="text" class="input-field" placeholder="Enter Id" required>
-                    <input type="password" class="input-field" placeholder="Enter Password" required>
+                <form id="login" class="input-group" onsubmit="return pageMoveCheck();">
+                    <input type="text" id ="inputId" class="input-field" placeholder="Enter Id" required>
+                    <input type="password" id="inputPwd" class="input-field" placeholder="Enter Password" required>
+                    <input type="hidden" id="loginResult" value="false">
                    <!--  <input type="checkbox" class="checkbox"><span>Remember Password</span> -->
-                    <button class="submit">Login</button>
+                    <button class="submit" id="login">Login</button>
                 </form>
                 <form id="register" class="input-group">
                     <h5>아이디</h5>
                     <input type="text" id="userId" class="input-id" placeholder="Enter your new ID" required>
-                    <input type="hidden" id="checkIdResult">
-                    <button type="button" id='idButton' class="w-btn-outline w-btn-yellow-outline" onclick="checkDuplicateOfId();">중복확인</button>
+                    <input type="hidden" id="checkIdResult" value='false'>
+                    <button type="button" id='idButton' class="w-btn-outline w-btn-yellow-outline">중복확인</button>
                     <div class='alert' id='alertCheckId'></div>
                    <h5>비밀번호</h5>
                     <input type="password" class="input-field" id="password" placeholder="Enter your new Password" onkeydown="inputPassword();" onblur="outFocusFromPassword();" required>
@@ -79,10 +80,12 @@
                 </form>
             </div>
         </div>
- <script src="../js/LoginAndSignUpForm.js"></script>
- <script src="../js/SignUp_EmailAndPhone.js"></script>
- <script src="../js/SignUp_submit.js"></script>
- <script src="../js/SignUp_CheckDuplicateOfId.js"></script>
+<script src="../js/Login.js"></script> 
+<script src="../js/SignUp_CheckDuplicateOfId.js"></script>       
+<script src="../js/LoginAndSignUpForm.js"></script>
+<script src="../js/SignUp_EmailAndPhone.js"></script>
+<script src="../js/SignUp_submit.js"></script>
+ 
  <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
  <script src="../js/LoginAndSignUpForm_DaumAddressAPI.js"></script>
 
