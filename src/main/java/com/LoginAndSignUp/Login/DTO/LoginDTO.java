@@ -7,6 +7,6 @@ import lombok.Setter;
 @Setter
 public class LoginDTO {
 	private String userId;
-	private String userPWd;
+	private String userPwd;
 	private boolean loginResult;
 }

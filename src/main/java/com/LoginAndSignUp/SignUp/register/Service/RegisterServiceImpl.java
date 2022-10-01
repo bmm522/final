@@ -18,6 +18,7 @@ import com.LoginAndSignUp.SignUp.register.DTO.RegisterDTO;
 
 @Service
 public class RegisterServiceImpl  implements RegisterService{
+	ArrayList<CodeEntity> hashCodeArr = new ArrayList<CodeEntity>();
 	
 	@Autowired
 	private MemberDAOImpl memberDAO;
@@ -26,9 +27,10 @@ public class RegisterServiceImpl  implements RegisterService{
 	private MemberCodeDAOImpl memberCodeDAO;
 	
 	public void registerMember(RegisterDTO registerDTO) {
-		ArrayList<CodeEntity> cdArr =changePwdToHashCode(registerDTO.getUserId(), registerDTO.getUserPwd());
-		memberDAO.registerMember(getMemberDTO(registerDTO,cdArr.get(0).getHashCode()));
-		memberCodeDAO.registerMemberCode(getMemberCodeDTO(registerDTO,cdArr.get(0).getSaltCode()));
+		System.out.println(registerDTO.getUserPwd());
+		hashCodeArr =changePwdToHashCode(registerDTO.getUserId(), registerDTO.getUserPwd());
+		memberDAO.registerMember(getMemberDTO(registerDTO,hashCodeArr.get(0).getHashCode()));
+		memberCodeDAO.registerMemberCode(getMemberCodeDTO(registerDTO,hashCodeArr.get(0).getSaltCode()));
 		
 	}
 	
@@ -54,8 +56,10 @@ public class RegisterServiceImpl  implements RegisterService{
 	}
 	
 	private ArrayList<CodeEntity> changePwdToHashCode(String userId, String userPwd){
+		ArrayList<CodeEntity> ceArr = new ArrayList<CodeEntity>();
 		CodeEncryptionOfOneWay cw = new CodeEncryptionOfOneWay(userId, userPwd);
-		return cw.getEncryptingCode();
+		ceArr =  cw.getEncryptingCode();
+		return ceArr;
 	}
 	
 }

@@ -19,7 +19,7 @@ public class LoginServiceImpl implements LoginService{
 	
 	@Override
 	public boolean login(LoginDTO loginDTO) {
-		return checkLogincheck(loginDTO.getUserPWd(),
+		return checkLogincheck(loginDTO.getUserPwd(),
 													  getSalt(loginDTO.getUserId()),
 													  getHashCode(loginDTO.getUserId()));
 		

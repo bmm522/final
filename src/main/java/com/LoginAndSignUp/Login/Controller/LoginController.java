@@ -24,6 +24,7 @@ public class LoginController {
 	public Map<String,Object> login(LoginDTO loginDTO){
 		HashMap<String,Object> checkResult = new HashMap<String,Object>();
 		checkResult.put("loginResult", loginService.login(loginDTO));
+		System.out.println(checkResult.get("loginResult"));
 		return checkResult;
 	}
 }
