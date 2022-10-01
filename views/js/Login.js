@@ -1,4 +1,4 @@
-$("#login").click(function(){
+$("#loginButton").click(function login(){
     var params={
         userId : $("#inputId").val(),
         userPwd : $("#inputPwd").val(),
@@ -8,12 +8,17 @@ $("#login").click(function(){
         type :"POST",
         url:"http://localhost:8080/login",
         data : params,
+        async:false,
         success:function(res){
             document.getElementById('loginResult').value=res.loginResult;
             loginCheck();
+            
+            
+            
         },
         error : function(XMLHttpRequest, textStatus, errorThrown){
             alert("오류")
+            
         }
     });
 
@@ -22,17 +27,20 @@ $("#login").click(function(){
 const loginCheck = () =>{
     if(document.getElementById('loginResult').value == "true"){
         sessionStorage.setItem('id',document.getElementById('inputId').value);
-    } else{
-
-    }
-}
-
-const pageMoveCheck = () =>{
-    if(document.getElementById('loginResult').value==true){
         return true;
-    } else {
+    } else{
         alert('아이디 또는 비밀번호가 없거나 틀렸습니다.');
         return false;
     }
 }
+
+// const pageMoveCheck = () =>{
+//     if(document.getElementById('loginResult').value=="true"){
+//         return true;
+//     } else {
+//         console.log($('#loginResult').val());
+//         alert('아이디 또는 비밀번호가 없거나 틀렸습니다.');
+//         return false;
+//     }
+// }
 
