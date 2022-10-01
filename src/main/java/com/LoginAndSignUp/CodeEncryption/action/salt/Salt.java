@@ -5,10 +5,13 @@ import java.security.SecureRandom;
 import java.util.Base64;
 
 public class Salt {
+	private String salt="";
 	
 	public String actionOfMakeSalt() {
 		byte[] randomByte = makeRandomByteArray();
-		return new String(Base64.getEncoder().encode(randomByte));
+		String salt = new String(Base64.getEncoder().encode(randomByte));
+		this.salt = salt;
+		return salt;
 	}
 	
 	private byte[] makeRandomByteArray() {
@@ -24,7 +27,7 @@ public class Salt {
 	}
 	
 	public String getSalt() {
-		return actionOfMakeSalt();
+		return salt;
 	}
 
 }
