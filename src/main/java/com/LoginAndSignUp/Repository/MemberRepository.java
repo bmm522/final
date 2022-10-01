@@ -10,7 +10,7 @@ public interface MemberRepository extends JpaRepository<Member, Integer>{
 
 	boolean existsByUserId(String userId);
 
-	@Query("SELECT USERPWD FROM MEMBER FROM WHERE USERID = :userId")
+	@Query("select m.userPwd from Member m where m.userId = :userId")
 	String getHashCode(@Param("userId")String userId);
 	
 

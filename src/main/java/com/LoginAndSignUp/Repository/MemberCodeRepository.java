@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface MemberCodeRepository  extends JpaRepository<MemberCode, Integer>{
 	
 	
-	@Query("SELECT SALT FROM MEMBER_CODE FROM WHERE USERID = :userId")
+	@Query("select m.salt from MemberCode m where m.userId = :userId")
 	String getSalt(@Param("userId")String userId);
 }
