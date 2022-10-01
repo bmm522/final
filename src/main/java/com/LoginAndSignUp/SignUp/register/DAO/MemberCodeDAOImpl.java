@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 public class MemberCodeDAOImpl implements MemberCodeDAO{
 	
 	@Autowired
-	final MemberCodeRepository memberCodeRepository;
+	MemberCodeRepository memberCodeRepository;
 	
 	@Override
 	public void registerMemberCode(MemberCode memberCode) {

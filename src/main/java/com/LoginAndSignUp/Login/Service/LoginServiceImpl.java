@@ -19,8 +19,7 @@ public class LoginServiceImpl implements LoginService{
 	
 	@Override
 	public boolean login(LoginDTO loginDTO) {
-		return checkLogincheck(loginDTO.getUserId(), 
-													  loginDTO.getUserPWd(),
+		return checkLogincheck(loginDTO.getUserPWd(),
 													  getSalt(loginDTO.getUserId()),
 													  getHashCode(loginDTO.getUserId()));
 		
@@ -33,9 +32,9 @@ public class LoginServiceImpl implements LoginService{
 		return loginHashCodeDAO.getHashCode(userId);
 	}
 	
-	private boolean checkLogincheck(String userId, String userPWd) {
-		CheckMatchingCode cmc = new CheckMatchingCode();
-		
+	private boolean checkLogincheck(String userPwd, String salt, String hashCode) {
+		CheckMatchingCode checkMatchingCode = new CheckMatchingCode();
+		return checkMatchingCode.checkMatchingCode(userPwd, salt, hashCode);
 	}
 	
 }
