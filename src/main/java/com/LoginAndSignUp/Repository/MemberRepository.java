@@ -13,5 +13,18 @@ public interface MemberRepository extends JpaRepository<Member, Integer>{
 	@Query("select m.userPwd from Member m where m.userId = :userId")
 	String getHashCode(@Param("userId")String userId);
 	
+//	@Query("select m.userId from Member m where m.userName = :userName")
+//	String getUserIdByUserName(@Param("userName")String userName);
 
+	@Query("select m.userId from Member m where m.userEmail = :userEmail")
+	String getUserIdByUserEmail(@Param("userEmail")String userEmail);
+	
+//	@Query("select m.userId from Member m where m.userBirth = :userBirth")
+//	String getUserIdByUserBirth(@Param("userBirth")String userBirth);
+
+	boolean existsByUserName(String searchName);
+	
+	boolean existsByUserEamil(String searchEmail);
+	
+	boolean existsByUserBirth(String searchBirth);
 }
