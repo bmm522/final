@@ -22,9 +22,9 @@ public interface MemberRepository extends JpaRepository<Member, Integer>{
 //	@Query("select m.userId from Member m where m.userBirth = :userBirth")
 //	String getUserIdByUserBirth(@Param("userBirth")String userBirth);
 
-	boolean existsByUserName(String searchName);
+	boolean existsByUserName(String userName);
 	
-	boolean existsByUserEamil(String searchEmail);
+	boolean existsByUserEamil(String userEmail);
 	
-	boolean existsByUserBirth(String searchBirth);
+	boolean existsByUserBirth(String userBirth);
 }

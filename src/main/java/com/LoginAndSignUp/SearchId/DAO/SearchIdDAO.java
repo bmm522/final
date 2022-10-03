@@ -1,8 +1,8 @@
 package com.LoginAndSignUp.SearchId.DAO;
 
-import com.LoginAndSignUp.SearchId.DTO.SearchIdDTO;
+import com.LoginAndSignUp.Repository.Member;
 
 public interface SearchIdDAO {
 	
-	public String searchId(SearchIdDTO searchIdDTO);
+	public String searchId(Member member);
 }

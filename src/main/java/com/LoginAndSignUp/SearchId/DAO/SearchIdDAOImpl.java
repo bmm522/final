@@ -3,8 +3,8 @@ package com.LoginAndSignUp.SearchId.DAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.LoginAndSignUp.Repository.Member;
 import com.LoginAndSignUp.Repository.MemberRepository;
-import com.LoginAndSignUp.SearchId.DTO.SearchIdDTO;
 
 @Component
 public class SearchIdDAOImpl implements SearchIdDAO{
@@ -12,16 +12,16 @@ public class SearchIdDAOImpl implements SearchIdDAO{
 	@Autowired
 	MemberRepository memberReposiotry;
 	
-	public String searchId(SearchIdDTO searchIdDTO) {
-		if(!memberReposiotry.existsByUserName(searchIdDTO.getSearchName())) {
+	public String searchId(Member member) {
+		if(!memberReposiotry.existsByUserName(member.getUserName())) {
 			return "notExist";
 		}
-		if(!memberReposiotry.existsByUserEamil(searchIdDTO.getSearchEmail())) {
+		if(!memberReposiotry.existsByUserEamil(member.getUserEmail())) {
 			return "notExist";
 		}
-		if(!memberReposiotry.existsByUserBirth(searchIdDTO.getSearchBirth())) {
+		if(!memberReposiotry.existsByUserBirth(member.getUserBirth())) {
 			return "notExist";
 		}
-		return memberReposiotry.getUserIdByUserEmail(searchIdDTO.getSearchEmail());
+		return memberReposiotry.getUserIdByUserEmail(member.getUserEmail());
 	}
 }
