@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.LoginAndSignUp.Login.DTO.LoginDTO;
-import com.LoginAndSignUp.Login.Service.LoginServiceImpl;
+import com.LoginAndSignUp.Login.Service.LoginService;
 
 @CrossOrigin(origins="http://127.0.0.1:5501/", allowedHeaders="http://127.0.0.1:5501/")
 @RestController
 public class LoginController {
 		
 	@Autowired
-	private LoginServiceImpl loginService;
+	private LoginService loginService;
 	
 	@PostMapping("/login")
 	@ResponseBody

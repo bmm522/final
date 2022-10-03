@@ -1,5 +1,5 @@
 package com.LoginAndSignUp.Login.DAO;
 
-public interface LoginHashCode {
+public interface LoginHashCodeDAO {
 	public String getHashCode(String userId);
 }

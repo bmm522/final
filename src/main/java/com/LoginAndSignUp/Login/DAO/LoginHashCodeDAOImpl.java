@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import com.LoginAndSignUp.Repository.MemberRepository;
 
 @Component
-public class LoginHashCodeDAOImpl  implements LoginHashCode{
+public class LoginHashCodeDAOImpl  implements LoginHashCodeDAO{
 	
 	@Autowired
 	MemberRepository memberRepository;

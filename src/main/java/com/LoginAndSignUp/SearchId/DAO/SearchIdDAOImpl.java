@@ -16,7 +16,7 @@ public class SearchIdDAOImpl implements SearchIdDAO{
 		if(!memberReposiotry.existsByUserName(member.getUserName())) {
 			return "notExist";
 		}
-		if(!memberReposiotry.existsByUserEamil(member.getUserEmail())) {
+		if(!memberReposiotry.existsByUserEmail(member.getUserEmail())) {
 			return "notExist";
 		}
 		if(!memberReposiotry.existsByUserBirth(member.getUserBirth())) {

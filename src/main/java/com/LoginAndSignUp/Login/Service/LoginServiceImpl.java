@@ -4,18 +4,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.LoginAndSignUp.CodeEncryption.action.check.CheckMatchingCode;
-import com.LoginAndSignUp.Login.DAO.LoginHashCodeDAOImpl;
-import com.LoginAndSignUp.Login.DAO.LoginSaltDAOImpl;
+import com.LoginAndSignUp.Login.DAO.LoginHashCodeDAO;
+import com.LoginAndSignUp.Login.DAO.LoginSaltDAO;
 import com.LoginAndSignUp.Login.DTO.LoginDTO;
 
 @Service
 public class LoginServiceImpl implements LoginService{
 
 	@Autowired
-	private LoginSaltDAOImpl loginSaltDAO;
+	private LoginSaltDAO loginSaltDAO;
 	
 	@Autowired
-	private LoginHashCodeDAOImpl loginHashCodeDAO;
+	private LoginHashCodeDAO loginHashCodeDAO;
 	
 	@Override
 	public boolean login(LoginDTO loginDTO) {
