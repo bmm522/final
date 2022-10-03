@@ -1,8 +1,8 @@
 $("#searchId").click(function(){
 	var params={
 		searchName : $("#searchName").val(),
-		searchEmail : $("#searchEamil").val(),
-		searchBirth : $("#searchEamil").val(),
+		searchEmail : $("#searchEmail").val(),
+		searchBirth : $("#searchBirth").val(),
 		searchIdResult : $("#searchIdResult").val()
 	}
 	$.ajax({
@@ -11,7 +11,10 @@ $("#searchId").click(function(){
 		data : params,
 		success:function(res){
 			document.getElementById('searchIdResult').value = res.searchIdResult;
+			
 			resultOfSearchId();
+			console.log(document.getElementById('searchIdResult').value);
+			console.log("실행되긴함");
 		},
 		error : function(XMLHttpRequest, textStatus, errorThrown){
             alert("오류")
@@ -20,13 +23,14 @@ $("#searchId").click(function(){
 });
 
 const resultOfSearchId = () =>{
-	if($('#searchIdResult').val() == 'notExist'){
+	let searchIdResult = document.getElementById('searchIdResult').value;
+	if(document.getElementById('searchIdResult').value == 'notExist'){
 		$('#inputform').css('display','none');
-		$('#result').val() = "검색 결과가 없습니다."
-		$('#result').css('display','content');
+		document.getElementById('result').innerHTML = "검색 결과가 없습니다.";
+		$('#result').css('display','block');
 	} else {
 		$('#inputform').css('display', 'none');
-		$('result').val() = $('#searchIdResult').val();
-		$('result').css('display','content');
+		document.getElementById('result').innerHTML = "회원님의 아이디는 "+searchIdResult+" 입니다";
+		$('#result').css('display','block');
 	}
 }
