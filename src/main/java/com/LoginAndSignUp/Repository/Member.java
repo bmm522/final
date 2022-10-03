@@ -19,6 +19,7 @@ import lombok.NoArgsConstructor;
 @Builder(builderMethodName="MemberBuilder")
 public class Member {
 	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -36,5 +37,5 @@ public class Member {
 	private String userPhone;
 	@Column(name="USERADDRESS")
 	private String userAddress;
-	
+
 }
