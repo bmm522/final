@@ -13,38 +13,32 @@
    
     <div id="email-form"> 
       <h2>이메일로 비밀번호 찾기</h2>
-        <input type="hidden" id="certificationEmailCodeResult"/>
+        <input type="hidden" id="certificationEmailCodeResult" value=""/>
         <input type="text" id="userId" class="textBox" placeholder="Your Id" required/><br><br><br> 
         <input type="text" id="userEmail" class="textBox" placeholder="Your Email Address" required/><br><br><br>
         <input type="text" id="certificationEmailCode" class="textBox" placeholder="인증코드" required/><br><br><br>
-        <button class="custom-btn btn-14" id="searchId" onclick="em();">입력</button>
+        <button class="custom-btn btn-14" id="checkEmailForm">입력</button>
     </div>
     <div id="changeByEmail">
         <br>
         <br>
         <br>
         <h2>새로운 비밀번호</h2>
-        <input type="text" class="textBox" id="newPwd" placeholder="Enter your new Password" required/><br><br><br>
-        <input type="text" class="textBox" id="checkNewPwd" placeholder="Re-enter Password" required/><br><br><br>
-        <button class="custom-btn btn-14" id="searchId">변경</button>
+        <form onsubmit="return changePwdAction();">
+          <input type="text" class="textBox" id="newPwd" placeholder="Enter your new Password" required/><br><br><br>
+          <input type="text" class="textBox" id="checkNewPwd" placeholder="Re-enter Password" required/><br><br><br>
+          <button class="custom-btn btn-14" id="changeNewPwd">변경</button>
+        </form>
     </div>
 
     <script>
        
-        const em=()=>{
-            var e = document.getElementById('email-form');
-            var c = document.getElementById('changeByEmail');
-            e.style.transform="translateY(-1000px)";
-            e.style.transition="2s";
-            c.style.transform="translateY(-400px)";
-            c.style.transition="2s";
-        }
-
+     
 
     </script>
     
     
   </div>
-  <!-- <script src="../js/SearchId.js"></script>  -->
+   <script src="../js/SearchPwdByEmail.js"></script> 
 </body>
 </html>
