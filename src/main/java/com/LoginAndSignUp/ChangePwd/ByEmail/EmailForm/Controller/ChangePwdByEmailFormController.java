@@ -22,8 +22,8 @@ public class ChangePwdByEmailFormController {
 	@PostMapping("/change/password/email")
 	@ResponseBody
 	public Map<String, Object> changePwdByEmail(ChangePwdByEmailFormDTO changePwdByEmailFormDTO){
-		HashMap<String,Object> certificationEmailCodeResult = new HashMap<String,Object>();
-		certificationEmailCodeResult.put("certificationEmailCodeResult",changePwdByEmailFormService.changePwdByEmail(changePwdByEmailFormDTO));
-		return certificationEmailCodeResult;
+		HashMap<String,Object> checkDB = new HashMap<String,Object>();
+		checkDB.put("checkDB",changePwdByEmailFormService.changePwdByEmail(changePwdByEmailFormDTO));
+		return checkDB;
 	}
 }

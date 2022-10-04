@@ -8,6 +8,5 @@ import lombok.Setter;
 public class ChangePwdByEmailFormDTO {
 	private String userId;
 	private String userEmail;
-	private String certificationEmailCode;
-	private String certificationEmailCodeResult;
+	private String checkDB;
 }

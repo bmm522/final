@@ -10,18 +10,20 @@ import com.LoginAndSignUp.Repository.MemberRepository;
 public class SearchIdDAOImpl implements SearchIdDAO{
 	
 	@Autowired
-	MemberRepository memberReposiotry;
+	MemberRepository memberRepository;
 	
 	public String searchId(Member member) {
-		if(!memberReposiotry.existsByUserName(member.getUserName())) {
+		System.out.println(member.getUserId());
+		System.out.println(member.getUserEmail());
+		if(!memberRepository.existsByUserName(member.getUserName())) {
 			return "notExist";
 		}
-		if(!memberReposiotry.existsByUserEmail(member.getUserEmail())) {
+		if(!memberRepository.existsByUserEmail(member.getUserEmail())) {
 			return "notExist";
 		}
-		if(!memberReposiotry.existsByUserBirth(member.getUserBirth())) {
+		if(!memberRepository.existsByUserBirth(member.getUserBirth())) {
 			return "notExist";
 		}
-		return memberReposiotry.getUserIdByUserEmail(member.getUserEmail());
+		return memberRepository.getUserIdByUserEmail(member.getUserEmail());
 	}
 }
