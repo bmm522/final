@@ -24,7 +24,6 @@ public class SearchIdController {
 	public Map<String, Object> searchId(SearchIdDTO searchIdDTO){
 		HashMap<String, Object> searchIdResult = new HashMap<String,Object>();
 		searchIdResult.put("searchIdResult",searchIdService.searchId(searchIdDTO) );
-		System.out.println(searchIdService.searchId(searchIdDTO));
 		return searchIdResult;
 	}
 

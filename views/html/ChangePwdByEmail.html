@@ -13,12 +13,25 @@
    
     <div id="email-form"> 
       <h2>이메일로 비밀번호 찾기</h2>
-        <input type="hidden" id="certificationEmailCodeResult" value=""/>
+        <input type="hidden" id="checkDB" value=""/>
         <input type="text" id="userId" class="textBox" placeholder="Your Id" required/><br><br><br> 
         <input type="text" id="userEmail" class="textBox" placeholder="Your Email Address" required/><br><br><br>
-        <input type="text" id="certificationEmailCode" class="textBox" placeholder="인증코드" required/><br><br><br>
-        <button class="custom-btn btn-14" id="checkEmailForm">입력</button>
+       
+        <button class="custom-btn btn-14" id="checkEmailForm" \>입력</button>
+        <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     </div>
+    <div id="email-check">
+      <input type="text" id="certificationEmailCode" class="textBox" placeholder="인증코드" required/><br><br><br>
+      <input type="text" id="checkCertificationEmailCode" value=""/>
+      <button class="custom-btn btn-14" id="checkCode">입력</button>
+    </div>
+    
+
     <div id="changeByEmail">
         <br>
         <br>
@@ -39,6 +52,6 @@
     
     
   </div>
-   <script src="../js/SearchPwdByEmail.js"></script> 
+   <script src="../js/ChangePwdByEmail.js"></script> 
 </body>
 </html>
