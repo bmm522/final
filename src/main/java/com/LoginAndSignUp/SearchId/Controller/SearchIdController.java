@@ -22,9 +22,6 @@ public class SearchIdController {
 	@PostMapping("/searchId/result")
 	@ResponseBody
 	public Map<String, Object> searchId(SearchIdDTO searchIdDTO){
-		System.out.println(searchIdDTO.getSearchName());
-		System.out.println(searchIdDTO.getSearchEmail());
-		System.out.println(searchIdDTO.getSearchBirth());
 		HashMap<String, Object> searchIdResult = new HashMap<String,Object>();
 		searchIdResult.put("searchIdResult",searchIdService.searchId(searchIdDTO) );
 		System.out.println(searchIdService.searchId(searchIdDTO));

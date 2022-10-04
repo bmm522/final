@@ -1,44 +1,37 @@
-<!DOCTYPE HTML>
-<!--
-	Eventually by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Eventually by HTML5 UP</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="../css/searchId/css/main.css" />
-		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-	</head>
-	<body class="is-preload">
-		<div id="inputform">
-		<!-- Header -->
-			<header id="header">
-				<h1>아이디 찾기</h1>
-				
-			</header>
-			
-		<!-- Signup Form -->
-				<form id="signup-form" method="post" action="#">
-					<input type="text" name="email" id="searchName" placeholder="Your Name" />
-				</form>
-				<form id="signup-form" method="post" action="#">
-					<input type="text" name="email" id="searchEmail" placeholder="Your Email Address" />
-				</form>
-				<form id="signup-form">
-					<input type="text" name="email" id="searchBirth" placeholder="Your Birth" />
-					<input type="hidden" id="searchIdResult"/>
-					<input type="button" value="아이디 찾기" id="searchId"/>
-					
-				</form>
-		</div>			
-		<div id="result">asdfasdfasdfasdf</div>
-		<!-- Footer -->
-			<div id="result"></div>
-		<!-- Scripts -->
-			<script src="../js/SearchId.js"></script>
+<!DOCTYPE html>
+<html lang="kor">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아이디 찾기</title>
+    <link rel="stylesheet" href="../css/SearchId.css">
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<style>
 
-	</body>
+</style>
+</head>
+<body>
+  <div id="total-form">
+   
+    <div id="input-form"> 
+      <h2>아이디 찾기</h2>
+        <input type="hidden" id="searchIdResult"/>
+        <input type="text" id="searchName" class="textBox" placeholder="Your Name"/><br><br><br> 
+        <input type="text" id="searchEmail" class="textBox" placeholder="Your Email Address"/><br><br><br>
+        <input type="text" id="searchBirth" class="textBox" placeholder="Your Birth"/> <br><br><br>
+        <button class="custom-btn btn-14" id="searchId">아이디 찾기</button>
+      </div>
+      <div id="result-form">
+        
+        <div id="result">
+          <h2>아이디 찾기결과</h2>
+          <div id="re"></div>
+        </div>
+
+      </div>
+    
+  </div>
+  <script src="../js/SearchId.js"></script> 
+</body>
 </html>
