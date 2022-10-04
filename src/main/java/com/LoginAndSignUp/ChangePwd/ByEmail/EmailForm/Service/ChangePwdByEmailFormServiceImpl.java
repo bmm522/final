@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import com.LoginAndSignUp.ChangePwd.ByEmail.EmailForm.DAO.ChangePwdByEmailFormDAO;
 import com.LoginAndSignUp.ChangePwd.ByEmail.EmailForm.DTO.ChangePwdByEmailFormDTO;
 import com.LoginAndSignUp.Repository.Member;
+import com.LoginAndSignUp.SignUp.RandomNumber;
+import com.LoginAndSignUp.SignUp.email.API.EmailAuthenticationCode;
 
 @Service
 public class ChangePwdByEmailFormServiceImpl  implements ChangePwdByEmailFormService{
@@ -14,12 +16,27 @@ public class ChangePwdByEmailFormServiceImpl  implements ChangePwdByEmailFormSer
 	
 	@Override
 	public String changePwdByEmail(ChangePwdByEmailFormDTO changePwdByEmailFormDTO) {
-		return changePwdByEmailFormDAO.changePwdByEmail(Member.MemberBuilder()
+		 if(changePwdByEmailFormDAO.changePwdByEmail(Member.MemberBuilder()
 																										  .userId(changePwdByEmailFormDTO.getUserId())
 																										  .userEmail(changePwdByEmailFormDTO.getUserEmail())
-																										  .build());
-		
+																										  .build())) {
+			return sendCode(changePwdByEmailFormDTO); 
+		 }
+		return "";
 	}
 
+	@Override
+	public String sendCode(ChangePwdByEmailFormDTO changePwdByEmailFormDTO) {
+		RandomNumber cr = new RandomNumber();
+		String randomNumber = cr.makeRandomNumber();
+		EmailAuthenticationCode.sendMail("이메일인증코드",
+																			randomNumber, 
+																			changePwdByEmailFormDTO.getUserEmail());
+		return randomNumber;
+	}
+
+	
+	
+	
 	
 }

@@ -26,9 +26,11 @@
     <br>
     </div>
     <div id="email-check">
+      <h2>인증코드 확인</h2>
+       <input type="hidden" id="randomNumber" value=""/>
       <input type="text" id="certificationEmailCode" class="textBox" placeholder="인증코드" required/><br><br><br>
-      <input type="text" id="checkCertificationEmailCode" value=""/>
-      <button class="custom-btn btn-14" id="checkCode">입력</button>
+      <input type="hidden" id="checkCertificationEmailCode" value=""/>
+      <button class="custom-btn btn-14" id="checkCode" onclick="checkCertificationEmailCode();">입력</button>
     </div>
     
 

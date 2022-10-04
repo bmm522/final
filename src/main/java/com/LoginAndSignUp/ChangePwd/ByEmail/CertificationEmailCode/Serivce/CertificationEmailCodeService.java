@@ -4,6 +4,6 @@ import com.LoginAndSignUp.ChangePwd.ByEmail.CertificationEmailCode.DTO.Certifica
 
 public interface CertificationEmailCodeService {
 
-	String checkEmailCode(CertificationEmailCodeDTO certificationEmailCodeDTO);
+	String sendCode(CertificationEmailCodeDTO certificationEmailCodeDTO);
 	
 }

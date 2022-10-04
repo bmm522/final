@@ -1,17 +1,17 @@
 $("#checkEmailForm").click(function(){
     var params={
-		userID : $("#userId").val(),
+		userId : $("#userId").val(),
 		userEmail : $("#userEmail").val(),
-        checkDB: $("#checkDB").val(),
+		randomNumber: $('#randomNumber').val()
 	}
 	$.ajax({
 		type: "POST",
 		url: "http://localhost:8080/change/password/email",
 		data : params,
 		success:function(res){
-			let check = document.getElementById('checkDB').value; 
-            check = res.checkDB;
-			if(check == "true"){
+			let randomNumber = document.getElementById('randomNumber').value
+            randomNumber = res.randomNumber;
+			if(randomNumber != ""){
                 em();
             } else {
                 alert('없는 정보 입니다.')
@@ -24,30 +24,33 @@ $("#checkEmailForm").click(function(){
 	});
 });
 
-$("#chcekCode").click(function(){
-    var params={
-		certificationEmailCode : $("#certificationEmailCode").val(),
-		checkCertificationEmailCode : $("#checkCertificationEmailCode").val()
-	}
-	$.ajax({
-		type: "POST",
-		url: "http://localhost:8080/change/password/email/certificationEmailCode",
-		data : params,
-		success:function(res){
-			let checkResult = document.getElementById('checkCertificationEmailCode').value; 
-            checkResult = res.checkCertificationEmailCode;
-			if(checkResult == "true"){
-                dm();
-            } else {
-                alert('잘못된 코드 입니다.')
-            }
+// $("#chcekCode").click(function(){
+//     var params={
+// 		userEmail : $("#userEmail").val(),
+// 		randomNumber: $('#randomNumber').val(),
+// 	}
+// 	$.ajax({
+// 		type: "POST",
+// 		url: "http://localhost:8080/change/password/email/certificationEmailCode",
+// 		data : params,
+// 		success:function(res){
+// 			document.getElementById('randomNumber').value = res.randomNumber;
+// 			checkCertificationEmailCode();
 			
-		},
-		error : function(XMLHttpRequest, textStatus, errorThrown){
-            alert("오류")
-        }
-	});
-});
+// 		},
+// 		error : function(XMLHttpRequest, textStatus, errorThrown){
+//             alert("오류")
+//         }
+// 	});
+// });
+
+const checkCertificationEmailCode = () =>{
+	if(document.getElementById('checkCertificationEmailCode').value == document.getElementById('randomNumber').value){
+		dm();
+	} else {
+		alert('올바른 인증코드를 입력해주세요.');
+	}
+}
 
 const em=()=>{
     var e = document.getElementById('email-form');

@@ -7,6 +7,5 @@ import lombok.Setter;
 @Setter
 public class CertificationEmailCodeDTO {
 	private String userEmail;
-	private String certificationEmailCode;
-	private String checkCertificationEmailCode;
+	private String randomNumber;
 }

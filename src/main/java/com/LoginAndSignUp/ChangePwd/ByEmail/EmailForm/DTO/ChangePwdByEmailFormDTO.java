@@ -8,5 +8,5 @@ import lombok.Setter;
 public class ChangePwdByEmailFormDTO {
 	private String userId;
 	private String userEmail;
-	private String checkDB;
+	private String randomNumber;
 }

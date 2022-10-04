@@ -1,9 +1,10 @@
 package com.LoginAndSignUp.ChangePwd.ByEmail.EmailForm.DAO;
 
+import com.LoginAndSignUp.ChangePwd.ByEmail.EmailForm.DTO.ChangePwdByEmailFormDTO;
 import com.LoginAndSignUp.Repository.Member;
 
 public interface ChangePwdByEmailFormDAO {
 
-	String changePwdByEmail(Member member);
+	boolean changePwdByEmail(Member member);
 	
 }
