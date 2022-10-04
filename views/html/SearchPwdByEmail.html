@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="kor">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비밀번호 찾기</title>
+    <link rel="stylesheet" href="../css/SearchPwd.css">
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<body>
+  <div id="total-form">
+   
+    <div id="email-form"> 
+      <h2>이메일로 비밀번호 찾기</h2>
+        <input type="hidden" id="certificationEmailCodeResult"/>
+        <input type="text" id="userId" class="textBox" placeholder="Your Id" required/><br><br><br> 
+        <input type="text" id="userEmail" class="textBox" placeholder="Your Email Address" required/><br><br><br>
+        <input type="text" id="certificationEmailCode" class="textBox" placeholder="인증코드" required/><br><br><br>
+        <button class="custom-btn btn-14" id="searchId" onclick="em();">입력</button>
+    </div>
+    <div id="changeByEmail">
+        <br>
+        <br>
+        <br>
+        <h2>새로운 비밀번호</h2>
+        <input type="text" class="textBox" id="newPwd" placeholder="Enter your new Password" required/><br><br><br>
+        <input type="text" class="textBox" id="checkNewPwd" placeholder="Re-enter Password" required/><br><br><br>
+        <button class="custom-btn btn-14" id="searchId">변경</button>
+    </div>
+
+    <script>
+       
+        const em=()=>{
+            var e = document.getElementById('email-form');
+            var c = document.getElementById('changeByEmail');
+            e.style.transform="translateY(-1000px)";
+            e.style.transition="2s";
+            c.style.transform="translateY(-400px)";
+            c.style.transition="2s";
+        }
+
+
+    </script>
+    
+    
+  </div>
+  <!-- <script src="../js/SearchId.js"></script>  -->
+</body>
+</html>
