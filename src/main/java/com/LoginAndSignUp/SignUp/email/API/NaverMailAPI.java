@@ -8,7 +8,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class EmailAuthenticationCode {
+public class NaverMailAPI {
 	/** 메일 HOST **/
 	private static final String HOST = "smtp.naver.com";
 	/** 메일 PORT **/
@@ -28,23 +28,23 @@ public class EmailAuthenticationCode {
 			// SMTP 발송 Properties 설정
 			Properties props = new Properties();
 			props.put("mail.transport.protocol", "smtp");
-			props.put("mail.smtp.host", EmailAuthenticationCode.HOST);
-			props.put("mail.smtp.port", EmailAuthenticationCode.PORT);
+			props.put("mail.smtp.host", NaverMailAPI.HOST);
+			props.put("mail.smtp.port", NaverMailAPI.PORT);
 			props.put("mail.smtp.starttls.enable", "true");
 			props.put("mail.smtp.ssl.enable","true");
-			props.put("mail.smtp.ssl.trust", EmailAuthenticationCode.HOST);
+			props.put("mail.smtp.ssl.trust", NaverMailAPI.HOST);
 			props.put("mail.smtp.auth", "true");
 			
 			// SMTP Session 생성
 			Session mailSession = Session.getInstance(props, new javax.mail.Authenticator(){
 				protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
-					return new javax.mail.PasswordAuthentication(EmailAuthenticationCode.MAIL_ID, EmailAuthenticationCode.MAIL_PW);
+					return new javax.mail.PasswordAuthentication(NaverMailAPI.MAIL_ID, NaverMailAPI.MAIL_PW);
 				}
 			});
 			
 			// Mail 조립
 			Message mimeMessage = new MimeMessage(mailSession);
-			mimeMessage.setFrom(new InternetAddress(EmailAuthenticationCode.MAIL_ID));
+			mimeMessage.setFrom(new InternetAddress(NaverMailAPI.MAIL_ID));
 			mimeMessage.setRecipients(Message.RecipientType.TO, receiverList);
             // 메일 제목
 			mimeMessage.setSubject(subejct);
