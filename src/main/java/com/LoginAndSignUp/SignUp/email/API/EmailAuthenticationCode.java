@@ -16,7 +16,7 @@ public class EmailAuthenticationCode {
 	/** 메일 ID **/
 	private static final String MAIL_ID = "bmm522@naver.com";
 	/** 메일 PW **/
-	private static final String MAIL_PW = "Dlquf!2tkfkd!2";
+	private static final String MAIL_PW = "tkfkd!2dlquf!2";
 	
 	public static void sendMail(String subejct, String body, Object obj) {
 		try {
@@ -36,7 +36,7 @@ public class EmailAuthenticationCode {
 			props.put("mail.smtp.auth", "true");
 			
 			// SMTP Session 생성
-			Session mailSession = Session.getDefaultInstance(props, new javax.mail.Authenticator(){
+			Session mailSession = Session.getInstance(props, new javax.mail.Authenticator(){
 				protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
 					return new javax.mail.PasswordAuthentication(EmailAuthenticationCode.MAIL_ID, EmailAuthenticationCode.MAIL_PW);
 				}
