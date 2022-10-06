@@ -1,4 +1,6 @@
-$("#checkEmailForm").click(function(){
+let randomNumberCode = "";
+
+$("#checkEmailButton").click(function(){
     var params={
 		userId : $("#userId").val(),
 		userEmail : $("#userEmail").val(),
@@ -9,9 +11,8 @@ $("#checkEmailForm").click(function(){
 		url: "http://localhost:8080/change/password/email",
 		data : params,
 		success:function(res){
-			let randomNumber = document.getElementById('randomNumber').value
-            randomNumber = res.randomNumber;
-			if(randomNumber != ""){
+            randomNumberCode = res.randomNumber;
+			if(randomNumberCode != ""){
                 em();
             } else {
                 alert('없는 정보 입니다.')
@@ -45,10 +46,9 @@ $("#checkEmailForm").click(function(){
 // });
 
 const checkCertificationEmailCode = () =>{
-	if(document.getElementById('checkCertificationEmailCode').value == document.getElementById('randomNumber').value){
+	if(document.getElementById('certificationEmailCode').value == randomNumberCode){
 		dm();
 	} else {
-		console.log(document.getElementById('randomNumber').value);
 		alert('올바른 인증코드를 입력해주세요.');
 	}
 }
