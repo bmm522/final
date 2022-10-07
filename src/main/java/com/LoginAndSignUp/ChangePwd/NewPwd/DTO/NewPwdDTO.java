@@ -6,6 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class NewPwdDTO {
+	private String userId;
 	private String newPwd;
-	private String checkNewPwd;
+	
 }
