@@ -10,5 +10,7 @@ import com.LoginAndSignUp.SignUp.register.DTO.RegisterDTO;
 public interface RegisterService {
 	
 	public void registerMember(RegisterDTO registerVo);
+
+	public ArrayList<CodeEntity> changePwdToHashCode(String userId, String newPwd);
 	
 }

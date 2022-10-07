@@ -27,7 +27,6 @@ public class RegisterServiceImpl  implements RegisterService{
 	private MemberCodeDAOImpl memberCodeDAO;
 	
 	public void registerMember(RegisterDTO registerDTO) {
-		System.out.println(registerDTO.getUserPwd());
 		hashCodeArr =changePwdToHashCode(registerDTO.getUserId(), registerDTO.getUserPwd());
 		memberDAO.registerMember(getMemberDTO(registerDTO,hashCodeArr.get(0).getHashCode()));
 		memberCodeDAO.registerMemberCode(getMemberCodeDTO(registerDTO,hashCodeArr.get(0).getSaltCode()));
@@ -55,7 +54,7 @@ public class RegisterServiceImpl  implements RegisterService{
 						.build();
 	}
 	
-	private ArrayList<CodeEntity> changePwdToHashCode(String userId, String userPwd){
+	public ArrayList<CodeEntity> changePwdToHashCode(String userId, String userPwd){
 		ArrayList<CodeEntity> ceArr = new ArrayList<CodeEntity>();
 		CodeEncryptionOfOneWay cw = new CodeEncryptionOfOneWay(userId, userPwd);
 		ceArr =  cw.getEncryptingCode();

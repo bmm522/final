@@ -1,9 +1,11 @@
 package com.LoginAndSignUp.Repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface MemberRepository extends JpaRepository<Member, Integer>{
@@ -27,4 +29,11 @@ public interface MemberRepository extends JpaRepository<Member, Integer>{
 	boolean existsByUserEmail(String userEmail);
 	
 	boolean existsByUserBirth(String userBirth);
+	
+	@Modifying
+	@Transactional
+	@Query("update Member m set m.userPwd = :userPwd where m.userId = :userId")
+	void updatePwd(@Param("userId")String userId, @Param("userPwd")String userPwd);
+
+
 }
