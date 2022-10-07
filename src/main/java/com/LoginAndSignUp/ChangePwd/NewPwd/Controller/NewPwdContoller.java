@@ -14,7 +14,7 @@ public class NewPwdContoller {
 	@PostMapping("/change/password")
 	@ResponseBody
 	public void changeNewPwd(NewPwdDTO newPwdDTO) {
-	
+		
 		System.out.println(newPwdDTO.getNewPwd());
 		System.out.println(newPwdDTO.getCheckNewPwd());
 	}
