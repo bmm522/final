@@ -30,10 +30,10 @@ public interface MemberRepository extends JpaRepository<Member, Integer>{
 	
 	boolean existsByUserBirth(String userBirth);
 	
-	@Modifying
 	@Transactional
+	@Modifying
 	@Query("update Member m set m.userPwd = :userPwd where m.userId = :userId")
-	void updatePwd(@Param("userId")String userId, @Param("userPwd")String userPwd);
+	void updatePwd(String userPwd, String userId );
 
 
 }

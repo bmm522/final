@@ -9,18 +9,16 @@ import com.LoginAndSignUp.Repository.MemberCodeRepository;
 import com.LoginAndSignUp.Repository.MemberRepository;
 
 @Component
-public class NewPwdDAOImpl implements NewPwdDAO{
+public class NewPwdMemberDAOImpl implements NewPwdMemberDAO{
 
 	@Autowired
 	MemberRepository memberRepository;
 	
-	@Autowired
-	MemberCodeRepository memberCodeRepository;
-	
 	@Override
-	public void updateMemberPwd(Member member, MemberCode memberCode) {
-		memberRepository.updatePwd(member.getUserId(), member.getUserPwd());
-		memberCodeRepository.updatePwd(memberCode.getUserId(), memberCode.getSalt());
+	public void updateMemberPwd(Member member) {
+		System.out.println(member.getUserId());
+		System.out.println(member.getUserPwd());
+		memberRepository.updatePwd( member.getUserPwd(), member.getUserId());
 		
 	}
 	

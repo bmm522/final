@@ -3,8 +3,8 @@ package com.LoginAndSignUp.ChangePwd.NewPwd.DAO;
 import com.LoginAndSignUp.Repository.Member;
 import com.LoginAndSignUp.Repository.MemberCode;
 
-public interface NewPwdDAO {
+public interface NewPwdMemberDAO {
 
-	void updateMemberPwd(Member member, MemberCode memberCode);
+	void updateMemberPwd(Member member);
 	
 }
