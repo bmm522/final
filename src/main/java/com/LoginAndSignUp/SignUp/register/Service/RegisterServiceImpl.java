@@ -9,10 +9,7 @@ import com.LoginAndSignUp.CodeEncryption.codeObject.CodeEntity;
 import com.LoginAndSignUp.CodeEncryption.main.CodeEncryptionOfOneWay;
 import com.LoginAndSignUp.Repository.Member;
 import com.LoginAndSignUp.Repository.MemberCode;
-import com.LoginAndSignUp.Repository.Member.MemberBuilder;
-import com.LoginAndSignUp.SignUp.register.DAO.MemberCodeDAO;
 import com.LoginAndSignUp.SignUp.register.DAO.MemberCodeDAOImpl;
-import com.LoginAndSignUp.SignUp.register.DAO.MemberDAO;
 import com.LoginAndSignUp.SignUp.register.DAO.MemberDAOImpl;
 import com.LoginAndSignUp.SignUp.register.DTO.RegisterDTO;
 

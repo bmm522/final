@@ -26,13 +26,13 @@ public class NewPwdServiceImpl implements NewPwdService{
 	
 	@Override
 	public void changeNewPwd(String userId , String newPwd) {
-		System.out.println("실행되긴함");
+
 		RegisterService registerService = new RegisterServiceImpl();
 		hashCodeArr = registerService.changePwdToHashCode(userId, newPwd);
-		System.out.println(hashCodeArr.get(0).getHashCode());
-		System.out.println(hashCodeArr.get(0).getSaltCode());
+		
 		newPwdMemberDAO.updateMemberPwd(getMember(userId, hashCodeArr.get(0).getHashCode()));
 		newPwdMemberCodeDAO.updateMemberCodeSalt(getMemberCode(userId, hashCodeArr.get(0).getSaltCode()));
+	
 		
 	}
 	

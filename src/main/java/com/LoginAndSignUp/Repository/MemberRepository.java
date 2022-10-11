@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface MemberRepository extends JpaRepository<Member, Integer>{
@@ -30,10 +29,10 @@ public interface MemberRepository extends JpaRepository<Member, Integer>{
 	
 	boolean existsByUserBirth(String userBirth);
 	
-	@Transactional
+	
 	@Modifying
-	@Query("update Member m set m.userPwd = :userPwd where m.userId = :userId")
-	void updatePwd(String userPwd, String userId );
-
+	@Query("UPDATE Member m SET m.userPwd = :userPwd WHERE m.userId = :userId")
+	void updatePwd(String userPwd, String userId);
+//	"update Member m set m.userPwd = :userPwd where m.userId = :userId"
 
 }
