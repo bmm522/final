@@ -7,7 +7,7 @@ import com.LoginAndSignUp.SignUp.email.API.NaverMailAPI;
 import com.LoginAndSignUp.SignUp.email.DTO.EmailDTO;
 
 @Service
-public class EmailServiceImpl implements EamilService {
+public class EmailServiceImpl implements EmailService {
 	
 	public String sendEamil(EmailDTO emailDTO) {
 		RandomNumber cr= new RandomNumber();

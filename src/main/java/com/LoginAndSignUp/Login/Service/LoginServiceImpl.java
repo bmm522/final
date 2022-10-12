@@ -19,9 +19,6 @@ public class LoginServiceImpl implements LoginService{
 	
 	@Override
 	public boolean login(LoginDTO loginDTO) {
-		System.out.println(checkLogincheck(loginDTO.getUserPwd(),
-													  getSalt(loginDTO.getUserId()),
-													  getHashCode(loginDTO.getUserId())));
 		return checkLogincheck(loginDTO.getUserPwd(),
 													  getSalt(loginDTO.getUserId()),
 													  getHashCode(loginDTO.getUserId()));

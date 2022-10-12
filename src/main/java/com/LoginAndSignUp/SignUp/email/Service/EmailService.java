@@ -2,7 +2,7 @@ package com.LoginAndSignUp.SignUp.email.Service;
 
 import com.LoginAndSignUp.SignUp.email.DTO.EmailDTO;
 
-public interface EamilService {
+public interface EmailService {
 	
 	public String sendEamil(EmailDTO emailVo);
 }

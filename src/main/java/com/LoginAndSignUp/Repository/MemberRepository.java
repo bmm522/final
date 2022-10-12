@@ -13,15 +13,9 @@ public interface MemberRepository extends JpaRepository<Member, Integer>{
 
 	@Query("select m.userPwd from Member m where m.userId = :userId")
 	String getHashCode(@Param("userId")String userId);
-	
-//	@Query("select m.userId from Member m where m.userName = :userName")
-//	String getUserIdByUserName(@Param("userName")String userName);
 
 	@Query("select m.userId from Member m where m.userEmail = :userEmail")
 	String getUserIdByUserEmail(@Param("userEmail")String userEmail);
-	
-//	@Query("select m.userId from Member m where m.userBirth = :userBirth")
-//	String getUserIdByUserBirth(@Param("userBirth")String userBirth);
 
 	boolean existsByUserName(String userName);
 	
@@ -29,10 +23,9 @@ public interface MemberRepository extends JpaRepository<Member, Integer>{
 	
 	boolean existsByUserBirth(String userBirth);
 	
-	
 	@Modifying
 	@Query("UPDATE Member m SET m.userPwd = :userPwd WHERE m.userId = :userId")
 	void updatePwd(String userPwd, String userId);
-//	"update Member m set m.userPwd = :userPwd where m.userId = :userId"
+
 
 }

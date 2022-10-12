@@ -13,8 +13,6 @@ public class SearchIdDAOImpl implements SearchIdDAO{
 	MemberRepository memberRepository;
 	
 	public String searchId(Member member) {
-		System.out.println(member.getUserId());
-		System.out.println(member.getUserEmail());
 		if(!memberRepository.existsByUserName(member.getUserName())) {
 			return "notExist";
 		}

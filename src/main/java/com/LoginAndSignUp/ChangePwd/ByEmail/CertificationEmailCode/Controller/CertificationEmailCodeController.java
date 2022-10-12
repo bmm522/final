@@ -22,8 +22,6 @@ public class CertificationEmailCodeController {
 	@PostMapping("/change/password/email/certificationEmailCode")
 	@ResponseBody
 	public Map<String, Object> sendCode(CertificationEmailCodeDTO certificationEmailCodeDTO){
-		System.out.println(certificationEmailCodeDTO.getUserEmail());
-		System.out.println(certificationEmailCodeDTO.getRandomNumber());
 		HashMap<String,Object> result = new HashMap<String,Object>();
 		result.put("randomNumber", certificationEmailCodeSerivce.sendCode( certificationEmailCodeDTO));
 		return result;

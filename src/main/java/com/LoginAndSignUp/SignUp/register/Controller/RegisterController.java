@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.LoginAndSignUp.SignUp.register.DTO.RegisterDTO;
-import com.LoginAndSignUp.SignUp.register.Service.RegisterServiceImpl;
+import com.LoginAndSignUp.SignUp.register.Service.RegisterService;
 
 @CrossOrigin(origins="http://127.0.0.1:5501/", allowedHeaders="http://127.0.0.1:5501/")
 @RestController
 public class RegisterController {
 	
 	@Autowired
-	private RegisterServiceImpl registerService;
+	private RegisterService registerService;
 	
 	@PostMapping("/signup/register")
 	@ResponseBody

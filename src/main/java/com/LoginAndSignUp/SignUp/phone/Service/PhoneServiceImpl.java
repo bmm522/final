@@ -11,7 +11,6 @@ public class PhoneServiceImpl implements PhoneService {
 	PhoneAPI pa = new PhoneAPI();
 	
 	public String sendMessage(PhoneDTO phoneDTO) {
-		System.out.println("service");
 		RandomNumber cr =new RandomNumber();
 		String authenticationNumber = cr.makeRandomNumber();
 		pa.sendMessage(phoneDTO.getPhoneNumber(),authenticationNumber);

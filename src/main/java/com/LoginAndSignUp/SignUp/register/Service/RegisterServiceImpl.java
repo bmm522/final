@@ -9,8 +9,8 @@ import com.LoginAndSignUp.CodeEncryption.codeObject.CodeEntity;
 import com.LoginAndSignUp.CodeEncryption.main.CodeEncryptionOfOneWay;
 import com.LoginAndSignUp.Repository.Member;
 import com.LoginAndSignUp.Repository.MemberCode;
-import com.LoginAndSignUp.SignUp.register.DAO.MemberCodeDAOImpl;
-import com.LoginAndSignUp.SignUp.register.DAO.MemberDAOImpl;
+import com.LoginAndSignUp.SignUp.register.DAO.MemberCodeDAO;
+import com.LoginAndSignUp.SignUp.register.DAO.MemberDAO;
 import com.LoginAndSignUp.SignUp.register.DTO.RegisterDTO;
 
 @Service
@@ -18,10 +18,10 @@ public class RegisterServiceImpl  implements RegisterService{
 	ArrayList<CodeEntity> hashCodeArr = new ArrayList<CodeEntity>();
 	
 	@Autowired
-	private MemberDAOImpl memberDAO;
+	private MemberDAO memberDAO;
 	
 	@Autowired
-	private MemberCodeDAOImpl memberCodeDAO;
+	private MemberCodeDAO memberCodeDAO;
 	
 	public void registerMember(RegisterDTO registerDTO) {
 		hashCodeArr =changePwdToHashCode(registerDTO.getUserId(), registerDTO.getUserPwd());
