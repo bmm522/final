@@ -11,7 +11,7 @@ import com.LoginAndSignUp.ChangePwd.NewPwd.Service.NewPwdService;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
-@CrossOrigin(origins="http://127.0.0.1:5501/", allowedHeaders="http://127.0.0.1:5501/")
+
 @RestController
 public class NewPwdContoller {
 	
@@ -19,7 +19,7 @@ public class NewPwdContoller {
 	@Autowired
 	NewPwdService newPwdService;
 	
-	@PostMapping("/change/password")
+	@PostMapping("/password/new")
 	@ResponseBody
 	public void changeNewPwd(@RequestBody String data) {
 		JsonParser parser = new JsonParser();

@@ -12,14 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.LoginAndSignUp.SearchId.DTO.SearchIdDTO;
 import com.LoginAndSignUp.SearchId.Service.SearchIdService;
 
-@CrossOrigin(origins="http://127.0.0.1:5501/", allowedHeaders="http://127.0.0.1:5501/")
 @RestController
 public class SearchIdController {
 	
 	@Autowired
 	private SearchIdService searchIdService;
 	
-	@PostMapping("/searchId/result")
+	@PostMapping("/search-id/result")
 	@ResponseBody
 	public Map<String, Object> searchId(SearchIdDTO searchIdDTO){
 		HashMap<String, Object> searchIdResult = new HashMap<String,Object>();

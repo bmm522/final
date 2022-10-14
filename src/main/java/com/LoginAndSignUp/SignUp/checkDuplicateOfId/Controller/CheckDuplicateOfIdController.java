@@ -12,14 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.LoginAndSignUp.SignUp.checkDuplicateOfId.DAO.CheckDuplicateOfIdDAO;
 import com.LoginAndSignUp.SignUp.checkDuplicateOfId.DTO.CheckIdDTO;
 
-@CrossOrigin(origins="http://127.0.0.1:5501/", allowedHeaders="http://127.0.0.1:5501/")
 @RestController
 public class CheckDuplicateOfIdController {
 	
 	@Autowired
 	private CheckDuplicateOfIdDAO checkDuplicateOfIdDAO;
 	
-	@PostMapping("/signup/id/checkresult")
+	@PostMapping("/id/checkresult")
 	@ResponseBody
 	public Map<String,Object> checkDuplicateOfId(CheckIdDTO checkIdDTO ){
 		HashMap<String, Object> checkResult =  new HashMap<String, Object>();

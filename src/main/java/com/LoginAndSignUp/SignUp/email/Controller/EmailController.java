@@ -12,18 +12,17 @@ import com.LoginAndSignUp.SignUp.email.DTO.EmailDTO;
 import com.LoginAndSignUp.SignUp.email.Service.EmailService;
 import com.LoginAndSignUp.SignUp.email.Service.EmailServiceImpl;
 
-@CrossOrigin(origins="http://127.0.0.1:5501/", allowedHeaders="http://127.0.0.1:5501/")
 @RestController
 public class EmailController {
 	
 	
 	 EmailService emailService = new EmailServiceImpl();
 	
-	@PostMapping("/signup/email/randomnumber")
+	@PostMapping("email/authentication-number")
 	@ResponseBody
 	public Map<String, Object> sendEmail(EmailDTO emailDTO) {
 		HashMap<String, Object> randomNumber = new HashMap<String, Object>();
-		randomNumber.put("randomNumber", emailService.sendEamil(emailDTO));
+		randomNumber.put("authenticationNumber", emailService.sendEamil(emailDTO));
 		return randomNumber;
 		
 		

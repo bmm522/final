@@ -14,18 +14,18 @@ import com.LoginAndSignUp.ChangePwd.ByEmail.EmailForm.DTO.ChangePwdByEmailFormDT
 import com.LoginAndSignUp.ChangePwd.ByEmail.EmailForm.Service.ChangePwdByEmailFormService;
 import com.LoginAndSignUp.SignUp.email.API.GmailAPI;
 
-@CrossOrigin(origins="http://127.0.0.1:5501/", allowedHeaders="http://127.0.0.1:5501/")
+
 @RestController
 public class ChangePwdByEmailFormController {
 	
 	@Autowired
 	private ChangePwdByEmailFormService changePwdByEmailFormService;
 	
-	@PostMapping("/change/password/email")
+	@PostMapping("/password/new/email/authentication-number")
 	@ResponseBody
 	public Map<String, Object> changePwdByEmail(ChangePwdByEmailFormDTO changePwdByEmailFormDTO){
 		HashMap<String,Object> checkArr = new HashMap<String,Object>();
-		checkArr.put("randomNumber",changePwdByEmailFormService.changePwdByEmail(changePwdByEmailFormDTO));
+		checkArr.put("authenticationNumber",changePwdByEmailFormService.changePwdByEmail(changePwdByEmailFormDTO));
 		return checkArr;
 	}
 }
