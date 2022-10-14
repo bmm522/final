@@ -16,6 +16,7 @@ public class ChangePwdByEmailFormDAOImpl implements ChangePwdByEmailFormDAO {
 	
 	@Override
 	public boolean changePwdByEmail(Member member) {
+		System.out.println();
 		
 		if(!memberRepository.existsByUserId(member.getUserId())) {
 			return false;
