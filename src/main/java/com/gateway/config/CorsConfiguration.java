@@ -20,10 +20,12 @@ public class CorsConfiguration {
 	@Bean
 	public WebFilter corsFilter() {
 		return (ServerWebExchange exchange, WebFilterChain chain) -> {
+			System.out.println("corsFilter실행됨");
 			ServerHttpRequest request = exchange.getRequest();
 			if(CorsUtils.isPreFlightRequest(request)) {
 				ServerHttpResponse response = exchange.getResponse();
 				setResponseHeader(request, response);
+				System.out.println(response.getHeaders());
 				if(request.getMethod() == HttpMethod.OPTIONS) {
 					response.setStatusCode(HttpStatus.OK);
 					return Mono.empty();
@@ -37,9 +39,9 @@ public class CorsConfiguration {
 	private void setResponseHeader(ServerHttpRequest request, ServerHttpResponse response) {
 		HttpHeaders requestHeaders = request.getHeaders();
 		HttpHeaders responseHeaders = response.getHeaders();
-		
+
 		responseHeaders.add(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, requestHeaders.getOrigin());
-		responseHeaders.addAll(HttpHeaders.ACCESS_CONTROL_ALLOW_HEADERS,  requestHeaders.getAccessControlAllowHeaders());
+		responseHeaders.add(HttpHeaders.ACCESS_CONTROL_ALLOW_HEADERS,   "Origin,Accept,X-Requested-With,Content-Type,Access-Control-Request-Method,Access-Control-Request-Headers,Authorization, token");
 		responseHeaders.add(HttpHeaders.ACCESS_CONTROL_ALLOW_METHODS,  "GET, PUT, POST, DELETE, OPTIONS");
 		responseHeaders.add(HttpHeaders.ACCESS_CONTROL_ALLOW_CREDENTIALS, "true");
 		responseHeaders.add(HttpHeaders.ACCESS_CONTROL_EXPOSE_HEADERS, "ALL");
