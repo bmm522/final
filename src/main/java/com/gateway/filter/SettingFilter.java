@@ -29,6 +29,11 @@ public class SettingFilter extends AbstractGatewayFilterFactory<SettingFilter.Co
 			HttpHeaders requestHeaders = request.getHeaders();
 			settingForCors(requestHeaders, response.getHeaders());
 			
+			if(request.getMethod() == HttpMethod.OPTIONS) {
+				response.setStatusCode(HttpStatus.OK);
+				return Mono.empty();
+			}
+			
 			if(!requestHeaders.containsKey("token")) { 			//토큰 존재하지 않을때
 				return notiUnAuthorized(exchange); 
 			}
@@ -47,9 +52,15 @@ public class SettingFilter extends AbstractGatewayFilterFactory<SettingFilter.Co
 
 
 	private void settingForCors(HttpHeaders requestHeaders, HttpHeaders responseHeaders) {
-		
-		
-		
+		HttpMethod requestMethod = requestHeaders.getAccessControlRequestMethod();
+		responseHeaders.add(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, requestHeaders.getOrigin());
+		responseHeaders.addAll(HttpHeaders.ACCESS_CONTROL_ALLOW_HEADERS, requestHeaders.getAccessControlRequestHeaders());
+		if(requestMethod != null) {
+			responseHeaders.add(HttpHeaders.ACCESS_CONTROL_ALLOW_METHODS, requestMethod.name());
+		}
+		responseHeaders.add(HttpHeaders.ACCESS_CONTROL_ALLOW_CREDENTIALS, "true");
+		responseHeaders.add(HttpHeaders.ACCESS_CONTROL_EXPOSE_HEADERS, "ALL");
+		responseHeaders.add(HttpHeaders.ACCESS_CONTROL_MAX_AGE, "18000L" );
 	}
 
 	private Mono<Void> notiUnAuthorized(ServerWebExchange exchange) {
