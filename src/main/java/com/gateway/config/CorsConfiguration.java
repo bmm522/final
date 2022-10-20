@@ -36,7 +36,7 @@ public class CorsConfiguration {
 		};
 	}
 
-	private void setResponseHeader(ServerHttpRequest request, ServerHttpResponse response) {
+	public void setResponseHeader(ServerHttpRequest request, ServerHttpResponse response) {
 		HttpHeaders requestHeaders = request.getHeaders();
 		HttpHeaders responseHeaders = response.getHeaders();
 

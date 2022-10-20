@@ -12,6 +12,8 @@ import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 
+import com.gateway.config.CorsConfiguration;
+
 import reactor.core.publisher.Mono;
 
 @Component
@@ -28,6 +30,7 @@ public class SettingFilter extends AbstractGatewayFilterFactory<SettingFilter.Co
 			ServerHttpRequest request = exchange.getRequest(); // Pre Filter로 적용
 			ServerHttpResponse response = exchange.getResponse(); // Post Filter는 Response로 받아오면 된다.
 			HttpHeaders requestHeaders = request.getHeaders();
+			new CorsConfiguration().setResponseHeader(request,response);
 			System.out.println(2);
 			if(request.getMethod() == HttpMethod.OPTIONS) {
 				response.setStatusCode(HttpStatus.OK);
@@ -51,6 +54,17 @@ public class SettingFilter extends AbstractGatewayFilterFactory<SettingFilter.Co
 		});
 	}
 	
+//	private void corsSettingOfrequestHeaders(HttpHeaders requestHeaders, HttpHeaders responseHeaders) {
+//		responseHeaders.add(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, requestHeaders.getOrigin());
+//		responseHeaders.add(HttpHeaders.ACCESS_CONTROL_ALLOW_HEADERS,   "Origin,Accept,X-Requested-With,Content-Type,Access-Control-Request-Method,Access-Control-Request-Headers,Authorization, token");
+//		responseHeaders.add(HttpHeaders.ACCESS_CONTROL_ALLOW_METHODS,  "GET, PUT, POST, DELETE, OPTIONS");
+//		responseHeaders.add(HttpHeaders.ACCESS_CONTROL_ALLOW_CREDENTIALS, "true");
+//		responseHeaders.add(HttpHeaders.ACCESS_CONTROL_EXPOSE_HEADERS, "ALL");
+//		responseHeaders.add(HttpHeaders.ACCESS_CONTROL_MAX_AGE, "18000L" );
+//		
+//		
+//	}
+
 	private Mono<Void> notiUnAuthorized(ServerWebExchange exchange) {
 		ServerHttpResponse response = exchange.getResponse();
 		
