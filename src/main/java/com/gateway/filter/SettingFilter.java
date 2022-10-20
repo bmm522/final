@@ -1,5 +1,7 @@
 package com.gateway.filter;
 
+import static com.gateway.config.CorsConfiguration.setCors;
+
 import java.util.Objects;
 
 import org.springframework.cloud.gateway.filter.GatewayFilter;
@@ -11,8 +13,6 @@ import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
-
-import com.gateway.config.CorsConfiguration;
 
 import reactor.core.publisher.Mono;
 
@@ -30,7 +30,7 @@ public class SettingFilter extends AbstractGatewayFilterFactory<SettingFilter.Co
 			ServerHttpRequest request = exchange.getRequest(); // Pre Filter로 적용
 			ServerHttpResponse response = exchange.getResponse(); // Post Filter는 Response로 받아오면 된다.
 			HttpHeaders requestHeaders = request.getHeaders();
-			new CorsConfiguration().setResponseHeader(request,response);
+			setCors(request,response);
 			System.out.println(2);
 			if(request.getMethod() == HttpMethod.OPTIONS) {
 				response.setStatusCode(HttpStatus.OK);

@@ -24,7 +24,7 @@ public class CorsConfiguration {
 			ServerHttpRequest request = exchange.getRequest();
 			if(CorsUtils.isPreFlightRequest(request)) {
 				ServerHttpResponse response = exchange.getResponse();
-				setResponseHeader(request, response);
+				setCors(request, response);
 				System.out.println(response.getHeaders());
 				if(request.getMethod() == HttpMethod.OPTIONS) {
 					response.setStatusCode(HttpStatus.OK);
@@ -36,7 +36,7 @@ public class CorsConfiguration {
 		};
 	}
 
-	public void setResponseHeader(ServerHttpRequest request, ServerHttpResponse response) {
+	public static void setCors(ServerHttpRequest request, ServerHttpResponse response) {
 		HttpHeaders requestHeaders = request.getHeaders();
 		HttpHeaders responseHeaders = response.getHeaders();
 

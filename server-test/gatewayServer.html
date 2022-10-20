@@ -9,30 +9,65 @@
 </head>
 <body>
     <input type="text" id="test">
-    <button id="go">입력</button>
+    <button id="go" onclick="test();">입력</button>
     <div id="result">asdf</div>
     
     <script>
-    $("#go").click(function(){
-        var params={
-            test : $("#test").val(),
-            result : $("#result").val(),
+    // $("#go").click(function(){
+    //     var params={
+    //         test : $("#test").val(),
+    //         result : $("#result").val(),
             
-        }
-        $.ajax({
-            type: "POST",
-            url: "http://localhost:8000/first/msg",
-            data : params,
-            success:function(res){
-                document.getElementById('result').innerHTML = res.result;
+    //     }
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "http://localhost:8000/first/msg",
+    //         data : params,
+    //         success:function(res){
+    //             document.getElementById('result').innerHTML = res.result;
                
                 
+    //         },
+    //         error : function(XMLHttpRequest, textStatus, errorThrown){
+    //             alert("오류")
+    //         }
+    //     });
+    // });
+
+    const test = () =>{
+	
+		let test = document.getElementById('test').value;
+		
+		fetch("http://localhost:8000/first/msg", {
+			method: 'POST',
+            headers:{
+                // "Authorization" : "A.B.C",
+                // "Content-Type" : "application/json",
+                "token" : "A.B.C"
             },
-            error : function(XMLHttpRequest, textStatus, errorThrown){
-                alert("오류")
-            }
-        });
-    });
+			body: JSON.stringify({
+				test
+			}) // 서버에서는 JSON형식으로 보내게 되면 받아들일 수 없기 때문에 JSON을 String형식으로 변환시켜 보내야함.
+		}).then(res => res.json())
+          .then((data) =>{
+            console.log('통신성공');
+            console.log(data.result);
+            document.getElementById('result').innerHTML=data.result;
+          });
+
+
+
+		// .then(res => res.json())
+		// .then(res => {
+		// 	if(res.success){
+		// 		console.log("fetch성공");
+		// 	}
+		// })
+		
+		
+	} 
+    
+
 
     </script>
 </body>
