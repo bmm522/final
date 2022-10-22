@@ -20,13 +20,13 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	private String userId;
+	private String username;
 	private String password;
-	private String userName;
-	private String userEmail;
-	private String userBirth;
-	private String userPhone;
-	private String userAddress;
+	private String nickname;
+	private String email;
+	private String birth;
+	private String phone;
+	private String address;
 	private String roles;
 	private String provider;
 	private String providerId;

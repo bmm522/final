@@ -8,6 +8,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.loginAPI.config.filter.loginAuthenticationFilter;
+
 import lombok.RequiredArgsConstructor;
 
 @Configuration
@@ -27,6 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.and()
 		.formLogin().disable()
 		.httpBasic().disable()
+		.addFilter(new loginAuthenticationFilter(authenticationManager()))
 		.authorizeRequests()
 		.antMatchers("/user/**")
 		.access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN') ")

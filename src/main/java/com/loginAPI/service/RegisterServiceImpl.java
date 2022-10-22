@@ -18,6 +18,7 @@ public class RegisterServiceImpl implements RegisterService{
 	
 	@Override
 	public void join(User user) {
+		System.out.println(user.getUsername());
 		user.setRoles("ROLE_USER");
 		user.setProvider("LOCAL");
 		user.setProviderId("NULL");
