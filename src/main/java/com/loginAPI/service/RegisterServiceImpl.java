@@ -7,14 +7,16 @@ import org.springframework.stereotype.Service;
 import com.loginAPI.model.User;
 import com.loginAPI.repository.UserRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class RegisterServiceImpl implements RegisterService{
 
 	@Autowired
 	private UserRepository userRepository;
 	
-	@Autowired
-	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	private final BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@Override
 	public void join(User user) {

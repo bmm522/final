@@ -8,6 +8,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.loginAPI.model.User;
 
+import lombok.Data;
+
+@Data
 public class PrincipalDetails implements UserDetails{
 	
 	private User user;
@@ -27,12 +30,12 @@ public class PrincipalDetails implements UserDetails{
 
 	@Override
 	public String getPassword() {
-		return null;
+		return user.getPassword();
 	}
 
 	@Override
 	public String getUsername() {
-		return null;
+		return user.getUsername();
 	}
 
 	@Override
