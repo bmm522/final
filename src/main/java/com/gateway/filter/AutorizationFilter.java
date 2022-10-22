@@ -17,9 +17,9 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 @Component
-public class SettingFilter extends AbstractGatewayFilterFactory<SettingFilter.Config>{
+public class AutorizationFilter extends AbstractGatewayFilterFactory<AutorizationFilter.Config>{
 	
-	public SettingFilter() {
+	public AutorizationFilter() {
 		super(Config.class);
 	}
 	
@@ -38,12 +38,14 @@ public class SettingFilter extends AbstractGatewayFilterFactory<SettingFilter.Co
 			}
 			System.out.println(3);
 			System.out.println(requestHeaders);
-			if(!requestHeaders.containsKey("token")) { 			//토큰 존재하지 않을때
-				System.out.println("Not have Token");
+			if(!requestHeaders.containsKey(HttpHeaders.AUTHORIZATION)) { 			//토큰 존재하지 않을때
+				System.out.println("Not have Authorization");
 				return notiUnAuthorized(exchange); 
 			}
-			String token = Objects.requireNonNull(request.getHeaders().get("token")).get(0); // 빠른 오류 확인 위해서 requiredNonNull 사용.
-			
+			String authorication  = Objects.requireNonNull(request.getHeaders().get(HttpHeaders.AUTHORIZATION)).get(0); // 빠른 오류 확인 위해서 requiredNonNull 사용.
+			String token = authorication.replace("Bearer", "").trim();
+
+			System.out.println(token);
 			System.out.println(4);
 			if(!token.equals("A.B.C")) { 			//토큰 일치하지 않을때
 				return notiUnAuthorized(exchange);
@@ -54,16 +56,6 @@ public class SettingFilter extends AbstractGatewayFilterFactory<SettingFilter.Co
 		});
 	}
 	
-//	private void corsSettingOfrequestHeaders(HttpHeaders requestHeaders, HttpHeaders responseHeaders) {
-//		responseHeaders.add(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, requestHeaders.getOrigin());
-//		responseHeaders.add(HttpHeaders.ACCESS_CONTROL_ALLOW_HEADERS,   "Origin,Accept,X-Requested-With,Content-Type,Access-Control-Request-Method,Access-Control-Request-Headers,Authorization, token");
-//		responseHeaders.add(HttpHeaders.ACCESS_CONTROL_ALLOW_METHODS,  "GET, PUT, POST, DELETE, OPTIONS");
-//		responseHeaders.add(HttpHeaders.ACCESS_CONTROL_ALLOW_CREDENTIALS, "true");
-//		responseHeaders.add(HttpHeaders.ACCESS_CONTROL_EXPOSE_HEADERS, "ALL");
-//		responseHeaders.add(HttpHeaders.ACCESS_CONTROL_MAX_AGE, "18000L" );
-//		
-//		
-//	}
 
 	private Mono<Void> notiUnAuthorized(ServerWebExchange exchange) {
 		ServerHttpResponse response = exchange.getResponse();
@@ -72,12 +64,11 @@ public class SettingFilter extends AbstractGatewayFilterFactory<SettingFilter.Co
 		return response.setComplete();
 	}
 	
-	
-	
 	public static class Config{
 		
 	}
-
+	
+	
 
 	
 }
