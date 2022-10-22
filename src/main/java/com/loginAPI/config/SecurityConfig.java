@@ -26,6 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 		.and()
 		.formLogin().disable()
+		.httpBasic().disable()
 		.authorizeRequests()
 		.antMatchers("/user/**")
 		.access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN') ")

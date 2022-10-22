@@ -6,4 +6,6 @@ import com.loginAPI.model.User;
 
 public interface UserRepository extends JpaRepository<User, Integer>{
 
+	public User findByUserId(String userId);
+
 }
