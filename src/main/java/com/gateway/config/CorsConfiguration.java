@@ -22,6 +22,7 @@ public class CorsConfiguration {
 		return (ServerWebExchange exchange, WebFilterChain chain) -> {
 			System.out.println("corsFilter실행됨");
 			ServerHttpRequest request = exchange.getRequest();
+//			exchange.getResponse().getHeaders().set("status_result","");
 			if(CorsUtils.isPreFlightRequest(request)) {
 				ServerHttpResponse response = exchange.getResponse();
 				setCors(request, response);
