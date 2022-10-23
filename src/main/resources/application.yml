@@ -10,11 +10,11 @@ eureka:
 
 
 
-#spring:
-#  application:
-#    name: gateway-service
-#  cloud:
-#    gateway:
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
 #      globalcors:
 #       corsConfigurations:
 #          '[/**]':
@@ -33,15 +33,30 @@ eureka:
 #              - PUT
 #              - OPTIONS
 #              - DELETE
-#      routes:
-#        - id: first-service
-#          uri: http://localhost:8080/register
+      routes:
+        - id: first-service
+          uri: http://localhost:8080/register
+          predicates:
+            - Path=/register/**
+        - id: second-service
+          uri: http://localhost:8080/login
+          predicates:
+          - Path=/login/**
+        - id: third-service
+          uri: http://localhost:8081/test
+          predicates:
+          - Path=/test/**
+          filters:
+          - JwtAuthorizationFilter
+#        - id: sub-service
+#          uri: http://localhost:8000/login
 #          predicates:
-#            - Path=/register/**
-#        - id: second-service
-#          uri: http://localhost:8080/login
-#          predicates:
-#          - Path=/login/**
+#          - Path=/jwtsave/**
+#          filters:
+#          - JwtTokenSaveFilter         
+#          filters:
+#          - JwtAuthorizationFilter
+          
 #            
 #          filters:
 #          - AutorizationFilter
