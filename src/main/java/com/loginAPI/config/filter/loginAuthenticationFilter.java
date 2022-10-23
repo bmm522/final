@@ -21,6 +21,7 @@ import com.loginAPI.config.auth.PrincipalDetails;
 import com.loginAPI.config.auth.ServerAuthCode;
 import com.loginAPI.model.User;
 import com.loginAPI.properties.JwtProperties;
+import com.loginAPI.properties.LoginStatusProperties;
 
 import lombok.RequiredArgsConstructor;
 
@@ -37,15 +38,31 @@ public class loginAuthenticationFilter extends UsernamePasswordAuthenticationFil
 		try {
 			ObjectMapper om = new ObjectMapper();
 			User user = om.readValue(request.getInputStream(), User.class);
-
+			System.out.println(1);
 			UsernamePasswordAuthenticationToken authenticationToken = 
 					new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
-
-			Authentication authentication =
-					authenticationManager.authenticate(authenticationToken);
-
-			PrincipalDetails principalDetails = (PrincipalDetails) authentication.getPrincipal();
-
+			System.out.println(2);
+			
+			Authentication authentication = null;
+			try {
+				authentication = authenticationManager.authenticate(authenticationToken);
+			} catch(Exception e) {
+				response.addHeader(LoginStatusProperties.STATUS, "Not found userId or userPassword");
+				logger.error("Not found userId or userPassword");
+				return authentication;
+			}
+					
+					
+			System.out.println(3);
+			PrincipalDetails principalDetails = null;
+			try {
+				principalDetails = (PrincipalDetails) authentication.getPrincipal();
+			} catch(Exception e) {
+				response.addHeader(LoginStatusProperties.STATUS, "Fail Login");
+				logger.error("Fail Login");
+				return authentication;
+			}
+			System.out.println(4);
 			return authentication;
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -75,7 +92,9 @@ public class loginAuthenticationFilter extends UsernamePasswordAuthenticationFil
 				.sign(Algorithm.HMAC512(JwtProperties.SECRET+serverAuthCode));
 		
 		response.addHeader(JwtProperties.HEADER_STRING, JwtProperties.TOKEN_PREFIX+jwtToken);
-		response.addHeader("Server_Authorization : ", serverAuthCode);
+		response.addHeader("Server_Authorization : ", "Server_Authorization "+serverAuthCode);
  
 	}
+	
+	
 }
