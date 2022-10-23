@@ -18,6 +18,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.loginAPI.config.auth.PrincipalDetails;
+import com.loginAPI.config.auth.ServerAuthCode;
 import com.loginAPI.model.User;
 import com.loginAPI.properties.JwtProperties;
 
@@ -56,7 +57,7 @@ public class loginAuthenticationFilter extends UsernamePasswordAuthenticationFil
 	protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
 			Authentication authResult) throws IOException, ServletException {
 		PrincipalDetails principalDetails = (PrincipalDetails) authResult.getPrincipal();
-		
+		String serverAuthCode = new ServerAuthCode().actionOfMakeServerAuthCode();
 		String jwtToken = JWT.create()
 				.withSubject(principalDetails.getUsername())
 				.withExpiresAt(new Date(System.currentTimeMillis()+JwtProperties.EXPIRATION_TIME))
@@ -71,9 +72,10 @@ public class loginAuthenticationFilter extends UsernamePasswordAuthenticationFil
 				.withClaim("provider",principalDetails.getUser().getProvider())
 				.withClaim("providerId",principalDetails.getUser().getProviderId())
 				.withClaim("createDate",principalDetails.getUser().getCreateDate())
-				.sign(Algorithm.HMAC512(JwtProperties.SECRET));
+				.sign(Algorithm.HMAC512(JwtProperties.SECRET+serverAuthCode));
 		
-		response.addHeader(JwtProperties.HEADER_STRING, JwtProperties.TOKEN_PREFIX+jwtToken );
+		response.addHeader(JwtProperties.HEADER_STRING, JwtProperties.TOKEN_PREFIX+jwtToken);
+		response.addHeader("Server_Authorization : ", serverAuthCode);
  
 	}
 }
