@@ -33,10 +33,12 @@ public class User {
 	@CreationTimestamp
 	private Timestamp createDate;
 	
+	
 	public List<String> getRoleList(){
 		if(this.roles.length() > 0) {
 			return Arrays.asList(this.roles.split(","));
 		}
 		return new ArrayList<>();
 	}
+
 }

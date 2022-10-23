@@ -1,6 +1,7 @@
 package com.loginAPI.config.filter;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.servlet.FilterChain;
@@ -75,6 +76,7 @@ public class loginAuthenticationFilter extends UsernamePasswordAuthenticationFil
 			Authentication authResult) throws IOException, ServletException {
 		PrincipalDetails principalDetails = (PrincipalDetails) authResult.getPrincipal();
 		String serverAuthCode = new ServerAuthCode().actionOfMakeServerAuthCode();
+		String createDate = getCreateDate(principalDetails.getUser().getCreateDate());
 		String jwtToken = JWT.create()
 				.withSubject(principalDetails.getUsername())
 				.withExpiresAt(new Date(System.currentTimeMillis()+JwtProperties.EXPIRATION_TIME))
@@ -88,12 +90,17 @@ public class loginAuthenticationFilter extends UsernamePasswordAuthenticationFil
 				.withClaim("roles",principalDetails.getUser().getRoles())
 				.withClaim("provider",principalDetails.getUser().getProvider())
 				.withClaim("providerId",principalDetails.getUser().getProviderId())
-				.withClaim("createDate",principalDetails.getUser().getCreateDate())
+				.withClaim("createDate",createDate)
 				.sign(Algorithm.HMAC512(JwtProperties.SECRET+serverAuthCode));
 		
 		response.addHeader(JwtProperties.HEADER_STRING, JwtProperties.TOKEN_PREFIX+jwtToken);
 		response.addHeader("Server_Authorization : ", "Server_Authorization "+serverAuthCode);
  
+	}
+
+	private String getCreateDate(Timestamp createDate) {
+		  java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return formatter.format(createDate);
 	}
 	
 	
