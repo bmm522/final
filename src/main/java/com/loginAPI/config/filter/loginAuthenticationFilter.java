@@ -19,6 +19,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.loginAPI.config.auth.PrincipalDetails;
 import com.loginAPI.model.User;
+import com.loginAPI.properties.JwtProperties;
 
 import lombok.RequiredArgsConstructor;
 
@@ -35,21 +36,15 @@ public class loginAuthenticationFilter extends UsernamePasswordAuthenticationFil
 		try {
 			ObjectMapper om = new ObjectMapper();
 			User user = om.readValue(request.getInputStream(), User.class);
-			System.out.println(request.getInputStream().getClass().getName());
-			System.out.println(user);
-			System.out.println("1");
-			System.out.println(user.getUsername());
-			System.out.println(user.getPassword());
+
 			UsernamePasswordAuthenticationToken authenticationToken = 
 					new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
-			System.out.println("2");
+
 			Authentication authentication =
 					authenticationManager.authenticate(authenticationToken);
-			System.out.println("3");
+
 			PrincipalDetails principalDetails = (PrincipalDetails) authentication.getPrincipal();
-			System.out.println("4");
-			System.out.println(principalDetails.getUser().getUsername());
-			System.out.println("로그인 성공 세션에저장완료");
+
 			return authentication;
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -64,12 +59,21 @@ public class loginAuthenticationFilter extends UsernamePasswordAuthenticationFil
 		
 		String jwtToken = JWT.create()
 				.withSubject(principalDetails.getUsername())
-				.withExpiresAt(new Date(System.currentTimeMillis()+(60000*10)))
+				.withExpiresAt(new Date(System.currentTimeMillis()+JwtProperties.EXPIRATION_TIME))
 				.withClaim("id", principalDetails.getUser().getId())
 				.withClaim("username",principalDetails.getUser().getUsername())
-				.sign(Algorithm.HMAC512("login"));
+				.withClaim("nickname",principalDetails.getUser().getNickname())
+				.withClaim("email",principalDetails.getUser().getEmail())
+				.withClaim("birth",principalDetails.getUser().getBirth())
+				.withClaim("phone",principalDetails.getUser().getPhone())
+				.withClaim("address",principalDetails.getUser().getAddress())
+				.withClaim("roles",principalDetails.getUser().getRoles())
+				.withClaim("provider",principalDetails.getUser().getProvider())
+				.withClaim("providerId",principalDetails.getUser().getProviderId())
+				.withClaim("createDate",principalDetails.getUser().getCreateDate())
+				.sign(Algorithm.HMAC512(JwtProperties.SECRET));
 		
-		response.addHeader("Authorization", "Bearer "+jwtToken );
-
+		response.addHeader(JwtProperties.HEADER_STRING, JwtProperties.TOKEN_PREFIX+jwtToken );
+ 
 	}
 }
