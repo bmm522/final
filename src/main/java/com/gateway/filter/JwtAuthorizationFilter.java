@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.gateway.properties.JwtProperties;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,17 +31,24 @@ public class JwtAuthorizationFilter extends AbstractGatewayFilterFactory<JwtAuth
 			ServerHttpResponse response = exchange.getResponse();
 			
 			String jwtHeader = request.getHeaders().get(HttpHeaders.AUTHORIZATION).get(0);
+			String serverHeader = request.getHeaders().get("Server_Authorization").get(0);
 			System.out.println(jwtHeader);
 			
 			//JWT 토큰을 검증을 해서 정상적인 사용자인지 확인
-			if(jwtHeader == null || !jwtHeader.startsWith("Bearer")) {
+			if(jwtHeader == null || !jwtHeader.startsWith(JwtProperties.JWT_PREFIX)) {
+				return chain.filter(exchange);
+			}
+			
+			//정상적인 로그인서버에서 접근한 사용자인지 확인
+			if(serverHeader == null || !serverHeader.startsWith(JwtProperties.SERVER_PREFIX)) {
 				return chain.filter(exchange);
 			}
 			
 			//JWT 토큰을 검증을 해서 정상적인 사용자인지 확인
-			String jwtToken = jwtHeader.replace("Bearer ", "");
+			String jwtToken = jwtHeader.replace(JwtProperties.JWT_PREFIX, "");
+			String serverToken = serverHeader.replace(JwtProperties.SERVER_PREFIX, "");
 			String username = 
-					JWT.require(Algorithm.HMAC512("secret1234")).build().verify(jwtToken).getClaim("username").asString();
+					JWT.require(Algorithm.HMAC512(JwtProperties.SECRET+serverToken)).build().verify(jwtToken).getClaim("username").asString();
 			System.out.println(username);
 			// 서명이 정상적으로 됨
 		
