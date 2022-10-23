@@ -1,7 +1,12 @@
 package com.loginAPI.config.filter;
 
 import java.io.IOException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.sql.Timestamp;
+import java.util.Base64;
 import java.util.Date;
 
 import javax.servlet.FilterChain;
@@ -19,7 +24,6 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.loginAPI.config.auth.PrincipalDetails;
-import com.loginAPI.config.auth.ServerAuthCode;
 import com.loginAPI.model.User;
 import com.loginAPI.properties.JwtProperties;
 import com.loginAPI.properties.LoginStatusProperties;
@@ -75,8 +79,11 @@ public class loginAuthenticationFilter extends UsernamePasswordAuthenticationFil
 	protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
 			Authentication authResult) throws IOException, ServletException {
 		PrincipalDetails principalDetails = (PrincipalDetails) authResult.getPrincipal();
-		String serverAuthCode = new ServerAuthCode().actionOfMakeServerAuthCode();
+		
+		String refreshToken = getRefreshToken();
+		
 		String createDate = getCreateDate(principalDetails.getUser().getCreateDate());
+		
 		String jwtToken = JWT.create()
 				.withSubject(principalDetails.getUsername())
 				.withExpiresAt(new Date(System.currentTimeMillis()+JwtProperties.EXPIRATION_TIME))
@@ -91,17 +98,42 @@ public class loginAuthenticationFilter extends UsernamePasswordAuthenticationFil
 				.withClaim("provider",principalDetails.getUser().getProvider())
 				.withClaim("providerId",principalDetails.getUser().getProviderId())
 				.withClaim("createDate",createDate)
-				.sign(Algorithm.HMAC512(JwtProperties.SECRET+serverAuthCode));
+				.sign(Algorithm.HMAC512(JwtProperties.SECRET+refreshToken));
 		
 		response.addHeader(JwtProperties.HEADER_STRING, JwtProperties.TOKEN_PREFIX+jwtToken);
-		response.addHeader("Server_Authorization : ", "Server_Authorization "+serverAuthCode);
+		response.addHeader("RefreshToken : ", "RefreshToken "+refreshToken);
  
 	}
+
+	
 
 	private String getCreateDate(Timestamp createDate) {
 		  java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		return formatter.format(createDate);
 	}
 	
+	private String getRefreshToken() {
+		MessageDigest md = null;
+		String randomByte = getRandomByte();
+		try {
+			md = MessageDigest.getInstance("SHA-256");
+			md.update(randomByte.getBytes());
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		return String.format("%064x", new BigInteger(1, md.digest()));
+	}
+	
+	private String getRandomByte() {
+		byte[] randomByte = null;
+		try {
+			SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
+			randomByte = new byte[16];
+			random.nextBytes(randomByte);
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		return new String(Base64.getEncoder().encode(randomByte));
+	}
 	
 }
