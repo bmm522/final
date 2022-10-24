@@ -15,6 +15,8 @@ import javax.mail.internet.MimeUtility;
 
 import org.springframework.stereotype.Service;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.loginAPI.properties.EmailProperties;
 
 import lombok.extern.slf4j.Slf4j;
@@ -24,18 +26,32 @@ import lombok.extern.slf4j.Slf4j;
 public class EmailAuthServiceImpl implements EmailAuthService{
 	
 	@Override
-	public String emailAuth(String email) {
+	public String emailAuth(String data) {
+		String email = asStringEmail(data);
 		String authCode = makeRandomNumber();
 		if(isValidEmail(email)) { //이메일 유효성 체크
 			sendMail("loginAPI의 이메일인증코드", authCode,email,EmailProperties.gmailId,EmailProperties.gmailPassword);
 			return authCode;
 		}
 
-		return "It's not an appropriate email format";
+		return authCode;
 	}
 	
+	private String asStringEmail(String email) {
+		try{
+			JsonParser parser = new JsonParser();
+			JsonElement element = parser.parse(email);
+			return element.getAsJsonObject().get("email").getAsString();
+		} catch(Exception e) {
+			log.error("not JsonObject");
+		}
+		return "not JsonObject";
+	}
+
 	private boolean isValidEmail(String email) {
-		String format = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$";
+		System.out.println("유효성체크함");
+		System.out.println(email);
+		String format = "^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$";
 		Pattern pattern = Pattern.compile(format);
 		Matcher matcher = pattern.matcher(email);
 		if(matcher.matches()) {
@@ -61,7 +77,7 @@ public class EmailAuthServiceImpl implements EmailAuthService{
 	    String toMail = toMailAddress; // 콤마(,) 나열 가능
 	    
 	    
-	    // mail contents
+
 	    StringBuffer contents = getContents(authCode);
 	    // mail properties
 	    Properties props = getmailProperties();
@@ -84,12 +100,13 @@ public class EmailAuthServiceImpl implements EmailAuthService{
 	        message.setSubject(subject);
 	        message.setContent(contents.toString(), "text/html;charset=UTF-8"); // 내용 설정 (HTML 형식)
 	        message.setSentDate(new java.util.Date());
-
+	        
+	        System.out.println(1);
 	        Transport t = mailSession.getTransport("smtp");
 	        t.connect(gmailId, gmailPassword);
 	        t.sendMessage(message, message.getAllRecipients());
 	        t.close();
-	        
+	        System.out.println(2);
 	    } catch (Exception e) {
 	    	log.error("Error sendMail");
 	    }
@@ -102,7 +119,7 @@ public class EmailAuthServiceImpl implements EmailAuthService{
 
 		 props.put("mail.smtp.auth", "true");
 		 props.put("mail.smtp.starttls.enable", "true"); // use TLS
-		return null;
+		return props;
 	}
 
 	private StringBuffer getContents(String authCode) {

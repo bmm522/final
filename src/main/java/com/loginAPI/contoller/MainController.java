@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.loginAPI.model.User;
 import com.loginAPI.service.EmailAuthService;
@@ -26,7 +27,8 @@ public class MainController {
 		registerService.register(user);
 	}
 	
-	@PostMapping("/emailAuth")
+	@ResponseBody
+	@PostMapping("/email_auth")
 	public Map<String, Object> emailAuth(@RequestBody String email) {
 		HashMap<String, Object> authCodeMap = new HashMap<String,Object>();
 		String authCode = emailAuthService.emailAuth(email);
