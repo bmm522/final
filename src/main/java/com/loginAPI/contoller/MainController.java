@@ -42,19 +42,19 @@ public class MainController {
 	}
 	
 	@ResponseBody
-	@PostMapping("/user_name/inspection")
+	@PostMapping("/username/inspection")
 	public Map<String, Object> duplicateCheck(@RequestBody String username){
 		HashMap<String, Object> resultMap = new HashMap<String,Object>();
-		String result = userNameDuplicateCheckService.duplicateCheck(asString(username));
+		String result = userNameDuplicateCheckService.duplicateCheck(asString(username,"username"));
 		resultMap.put("result", result);
-		return result;
+		return resultMap;
 	}
 	
 	@ResponseBody
 	@PostMapping("/email_auth")
 	public Map<String, Object> emailAuth(@RequestBody String email) {
 		HashMap<String, Object> authCodeMap = new HashMap<String,Object>();
-		String authCode = emailAuthService.emailAuth(asString(email));
+		String authCode = emailAuthService.emailAuth(asString(email,"email"));
 		authCodeMap.put("authCode" , authCode);
 		return authCodeMap;
 	}
@@ -63,16 +63,16 @@ public class MainController {
 	@PostMapping("/phone_auth")
 	public Map<String, Object> phoneAuth(@RequestBody String phone){
 		HashMap<String, Object> authCodeMap = new HashMap<String, Object>();
-		String authCode = phoneAuthService.phoneAuth(asString(phone));
+		String authCode = phoneAuthService.phoneAuth(asString(phone,"phone"));
 		authCodeMap.put("authCode", authCode);
 		return authCodeMap;
 	}
 	
-	private String asString(String data) {
+	private String asString(String data,String dataname) {
 		try{
 			JsonParser parser = new JsonParser();
 			JsonElement element = parser.parse(data);
-			return element.getAsJsonObject().get(data).getAsString();
+			return element.getAsJsonObject().get(dataname).getAsString();
 		} catch(Exception e) {
 			log.error("not JsonObject");
 		}
