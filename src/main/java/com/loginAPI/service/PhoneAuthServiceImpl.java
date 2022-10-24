@@ -21,27 +21,14 @@ import net.nurigo.java_sdk.exceptions.CoolsmsException;
 public class PhoneAuthServiceImpl implements PhoneAuthService {
 
 	@Override
-	public String phoneAuth(String data) {
-		String phone = asStringPhone(data);
+	public String phoneAuth(String phone) {
 		String authCode = makeRandomNumber();
 		if(isValidPhone(phone)) { //폰번호 유효성 체크
-			sendMessage(phone, authCode);
-			
+			sendMessage(phone, authCode);	
 		}
 		return "Fail sendPhoneAuth";
 	}
 
-
-	private String asStringPhone(String phone) {
-		try{
-			JsonParser parser = new JsonParser();
-			JsonElement element = parser.parse(phone);
-			return element.getAsJsonObject().get("phone").getAsString();
-		} catch(Exception e) {
-			log.error("not JsonObject");
-		}
-		return "not JsonObject";
-	}
 	
 	public String makeRandomNumber() {
 		String randomNumber = "";

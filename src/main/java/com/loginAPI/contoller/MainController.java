@@ -9,12 +9,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.loginAPI.model.User;
 import com.loginAPI.service.EmailAuthService;
 import com.loginAPI.service.PhoneAuthService;
 import com.loginAPI.service.RegisterService;
+import com.loginAPI.service.UserNameDuplicateCheckService;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Controller
+@Slf4j
 public class MainController {
 	
 	@Autowired
@@ -26,16 +32,29 @@ public class MainController {
 	@Autowired
 	private PhoneAuthService phoneAuthService;
 	
+	@Autowired
+	private UserNameDuplicateCheckService userNameDuplicateCheckService;
+	
+	
 	@PostMapping("/register")
 	public void register(User user) {
 		registerService.register(user);
 	}
 	
 	@ResponseBody
+	@PostMapping("/user_name/inspection")
+	public Map<String, Object> duplicateCheck(@RequestBody String username){
+		HashMap<String, Object> resultMap = new HashMap<String,Object>();
+		String result = userNameDuplicateCheckService.duplicateCheck(asString(username));
+		resultMap.put("result", result);
+		return result;
+	}
+	
+	@ResponseBody
 	@PostMapping("/email_auth")
 	public Map<String, Object> emailAuth(@RequestBody String email) {
 		HashMap<String, Object> authCodeMap = new HashMap<String,Object>();
-		String authCode = emailAuthService.emailAuth(email);
+		String authCode = emailAuthService.emailAuth(asString(email));
 		authCodeMap.put("authCode" , authCode);
 		return authCodeMap;
 	}
@@ -44,8 +63,19 @@ public class MainController {
 	@PostMapping("/phone_auth")
 	public Map<String, Object> phoneAuth(@RequestBody String phone){
 		HashMap<String, Object> authCodeMap = new HashMap<String, Object>();
-		String authCode = phoneAuthService.phoneAuth(phone);
+		String authCode = phoneAuthService.phoneAuth(asString(phone));
 		authCodeMap.put("authCode", authCode);
 		return authCodeMap;
+	}
+	
+	private String asString(String data) {
+		try{
+			JsonParser parser = new JsonParser();
+			JsonElement element = parser.parse(data);
+			return element.getAsJsonObject().get(data).getAsString();
+		} catch(Exception e) {
+			log.error("not JsonObject");
+		}
+		return "not JsonObject";
 	}
 }

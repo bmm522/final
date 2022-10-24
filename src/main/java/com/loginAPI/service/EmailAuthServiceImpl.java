@@ -26,28 +26,14 @@ import lombok.extern.slf4j.Slf4j;
 public class EmailAuthServiceImpl implements EmailAuthService{
 	
 	@Override
-	public String emailAuth(String data) {
-		String email = asStringEmail(data);
+	public String emailAuth(String email) {
 		String authCode = makeRandomNumber();
 		if(isValidEmail(email)) { //이메일 유효성 체크
 			sendMail("loginAPI의 이메일인증코드", authCode,email,EmailProperties.gmailId,EmailProperties.gmailPassword);
 			return authCode;
 		}
-
 		return "Fail sendEmailAuth";
 	}
-	
-	private String asStringEmail(String email) {
-		try{
-			JsonParser parser = new JsonParser();
-			JsonElement element = parser.parse(email);
-			return element.getAsJsonObject().get("email").getAsString();
-		} catch(Exception e) {
-			log.error("not JsonObject");
-		}
-		return "not JsonObject";
-	}
-
 
 	public String makeRandomNumber() {
 		String randomNumber = "";
