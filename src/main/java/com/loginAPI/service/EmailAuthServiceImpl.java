@@ -31,8 +31,8 @@ public class EmailAuthServiceImpl implements EmailAuthService{
 		if(isValidEmail(email)) { //이메일 유효성 체크
 			sendMail("loginAPI의 이메일인증코드", authCode,email,EmailProperties.gmailId,EmailProperties.gmailPassword);
 			return authCode;
-		}
-		return "Fail sendEmailAuth";
+		} 
+		return "It's not an appropriate email format";
 	}
 
 	public String makeRandomNumber() {
@@ -102,9 +102,8 @@ public class EmailAuthServiceImpl implements EmailAuthService{
 		 Properties props = new Properties();
 		props.put("mail.smtp.host", EmailProperties.host); // use Gmail
 		props.put("mail.smtp.port", EmailProperties.port); // set port
-
-		 props.put("mail.smtp.auth", "true");
-		 props.put("mail.smtp.starttls.enable", "true"); // use TLS
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true"); // use TLS
 		return props;
 	}
 
