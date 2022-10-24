@@ -4,6 +4,6 @@ import com.loginAPI.model.User;
 
 public interface RegisterService {
 
-	public void join(User user);
+	public void register(User user);
 
 }

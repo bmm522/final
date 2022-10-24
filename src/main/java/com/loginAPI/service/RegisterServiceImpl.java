@@ -19,7 +19,7 @@ public class RegisterServiceImpl implements RegisterService{
 	private final BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@Override
-	public void join(User user) {
+	public void register(User user) {
 		System.out.println(user.getUsername());
 		user.setRoles("ROLE_USER");
 		user.setProvider("LOCAL");

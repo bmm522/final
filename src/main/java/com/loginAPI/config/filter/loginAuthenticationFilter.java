@@ -38,15 +38,12 @@ public class loginAuthenticationFilter extends UsernamePasswordAuthenticationFil
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
 			throws AuthenticationException {
-		System.out.println("loginAuthenticationFilter 로그인시도중");	
-	
 		try {
 			ObjectMapper om = new ObjectMapper();
 			User user = om.readValue(request.getInputStream(), User.class);
-			System.out.println(1);
+			
 			UsernamePasswordAuthenticationToken authenticationToken = 
 					new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
-			System.out.println(2);
 			
 			Authentication authentication = null;
 			try {
