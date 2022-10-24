@@ -7,11 +7,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.server.ServerWebExchange;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.gateway.entity.User;
 import com.gateway.properties.HttpStatusProperties;
 import com.gateway.properties.JwtProperties;
 
@@ -35,7 +35,7 @@ public class JwtAuthorizationFilter extends AbstractGatewayFilterFactory<JwtAuth
 			ServerHttpResponse response = exchange.getResponse();
 			
 			String jwtHeader = request.getHeaders().get(HttpHeaders.AUTHORIZATION).get(0);
-			String serverHeader = request.getHeaders().get("Server_Authorization").get(0);
+			String serverHeader = request.getHeaders().get("RefreshToken").get(0);
 			System.out.println(jwtHeader);
 			
 			//JWT 토큰을 검증을 해서 정상적인 사용자인지 확인
@@ -44,17 +44,16 @@ public class JwtAuthorizationFilter extends AbstractGatewayFilterFactory<JwtAuth
 			}
 			
 			//정상적인 로그인서버에서 접근한 사용자인지 확인
-			if(serverHeader == null || !serverHeader.startsWith(JwtProperties.SERVER_PREFIX)) {
-				
-				return notiStatus(exchange, "Not found server_authorization header", HttpStatus.UNAUTHORIZED);
+			if(serverHeader == null || !serverHeader.startsWith(JwtProperties.REFRESHTOKEN_PREFIX)) {
+				return notiStatus(exchange, "Not found refreshToken header", HttpStatus.UNAUTHORIZED);
 			}
 			
 			//JWT 토큰을 검증을 해서 정상적인 사용자인지 확인
 			String jwtToken = jwtHeader.replace(JwtProperties.JWT_PREFIX, "");
-			String serverToken = serverHeader.replace(JwtProperties.SERVER_PREFIX, "");
-			String username = 
-					JWT.require(Algorithm.HMAC512(JwtProperties.SECRET+serverToken)).build().verify(jwtToken).getClaim("username").asString();
-			System.out.println(username);
+			String refreshToken = serverHeader.replace(JwtProperties.REFRESHTOKEN_PREFIX, "");
+			User user = getUser(jwtToken, refreshToken);
+			
+			System.out.println(user);
 			// 서명이 정상적으로 됨
 		
 			return chain.filter(exchange);
@@ -67,6 +66,24 @@ public class JwtAuthorizationFilter extends AbstractGatewayFilterFactory<JwtAuth
 		response.setStatusCode(status);
 		log.error(e);
 		return response.setComplete();
+	}
+	
+	private User getUser(String jwtToken, String refreshToken) {
+		return User.UserBuilder()
+					.username(JWT.require(Algorithm.HMAC512(JwtProperties.SECRET+refreshToken)).build().verify(jwtToken).getClaim("username").asString())
+					.nickname(JWT.require(Algorithm.HMAC512(JwtProperties.SECRET+refreshToken)).build().verify(jwtToken).getClaim("nickname").asString())
+					.email(JWT.require(Algorithm.HMAC512(JwtProperties.SECRET+refreshToken)).build().verify(jwtToken).getClaim("email").asString())
+					.birth(JWT.require(Algorithm.HMAC512(JwtProperties.SECRET+refreshToken)).build().verify(jwtToken).getClaim("birth").asString())
+					.phone(JWT.require(Algorithm.HMAC512(JwtProperties.SECRET+refreshToken)).build().verify(jwtToken).getClaim("phone").asString())
+					.address(JWT.require(Algorithm.HMAC512(JwtProperties.SECRET+refreshToken)).build().verify(jwtToken).getClaim("address").asString())
+					.roles(JWT.require(Algorithm.HMAC512(JwtProperties.SECRET+refreshToken)).build().verify(jwtToken).getClaim("roles").asString())
+					.provider(JWT.require(Algorithm.HMAC512(JwtProperties.SECRET+refreshToken)).build().verify(jwtToken).getClaim("provider").asString())
+					.providerId(JWT.require(Algorithm.HMAC512(JwtProperties.SECRET+refreshToken)).build().verify(jwtToken).getClaim("providerId").asString())
+					.createDate(JWT.require(Algorithm.HMAC512(JwtProperties.SECRET+refreshToken)).build().verify(jwtToken).getClaim("createDate").asString())
+					.build();
+		
+
+					
 	}
 	
 	public static class JwtAuthrizaionConfig{
