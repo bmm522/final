@@ -21,14 +21,14 @@ import reactor.core.publisher.Mono;
 
 @Component
 @Slf4j
-public class JwtAuthorizationFilter extends AbstractGatewayFilterFactory<JwtAuthorizationFilter.JwtAuthrizaionConfig>{
+public class UserJwtAuthorizationFilter extends AbstractGatewayFilterFactory<UserJwtAuthorizationFilter.UserJwtAuthrizaionConfig>{
 	
-	public JwtAuthorizationFilter() {
-		super(JwtAuthrizaionConfig.class);
+	public UserJwtAuthorizationFilter() {
+		super(UserJwtAuthrizaionConfig.class);
 	}
 	
 	@Override
-	public GatewayFilter apply(JwtAuthrizaionConfig config) {
+	public GatewayFilter apply(UserJwtAuthrizaionConfig config) {
 		return ((exchange, chain) -> {
 			
 			ServerHttpRequest request = exchange.getRequest();
@@ -36,7 +36,6 @@ public class JwtAuthorizationFilter extends AbstractGatewayFilterFactory<JwtAuth
 			
 			String jwtHeader = request.getHeaders().get(HttpHeaders.AUTHORIZATION).get(0);
 			String serverHeader = request.getHeaders().get("RefreshToken").get(0);
-			System.out.println(jwtHeader);
 			
 			//JWT 토큰을 검증을 해서 정상적인 사용자인지 확인
 			if(jwtHeader == null || !jwtHeader.startsWith(JwtProperties.JWT_PREFIX)) {
@@ -51,9 +50,12 @@ public class JwtAuthorizationFilter extends AbstractGatewayFilterFactory<JwtAuth
 			//JWT 토큰을 검증을 해서 정상적인 사용자인지 확인
 			String jwtToken = jwtHeader.replace(JwtProperties.JWT_PREFIX, "");
 			String refreshToken = serverHeader.replace(JwtProperties.REFRESHTOKEN_PREFIX, "");
-			User user = getUser(jwtToken, refreshToken);
-			
-			System.out.println(user);
+			User user = null;
+			try {
+				user = getUser(jwtToken, refreshToken);
+			} catch(Exception e) {
+				return notiStatus(exchange, "Token Error", HttpStatus.UNAUTHORIZED);
+			}
 			// 서명이 정상적으로 됨
 		
 			return chain.filter(exchange);
@@ -86,7 +88,7 @@ public class JwtAuthorizationFilter extends AbstractGatewayFilterFactory<JwtAuth
 					
 	}
 	
-	public static class JwtAuthrizaionConfig{
+	public static class UserJwtAuthrizaionConfig{
 		
 	}
 

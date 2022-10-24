@@ -47,7 +47,7 @@ spring:
           predicates:
           - Path=/test/**
           filters:
-          - JwtAuthorizationFilter
+          - UserJwtAuthorizationFilter
 #        - id: sub-service
 #          uri: http://localhost:8000/login
 #          predicates:
