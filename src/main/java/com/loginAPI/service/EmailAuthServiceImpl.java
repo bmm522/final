@@ -30,6 +30,7 @@ public class EmailAuthServiceImpl implements EmailAuthService{
 			sendMail("loginAPI의 이메일인증코드", authCode,email,EmailProperties.gmailId,EmailProperties.gmailPassword);
 			return authCode;
 		}
+
 		return "It's not an appropriate email format";
 	}
 	
@@ -40,6 +41,7 @@ public class EmailAuthServiceImpl implements EmailAuthService{
 		if(matcher.matches()) {
 			return true;
 		}
+		log.error("It's not an appropriate email format");
 		return false;
 	}
 
