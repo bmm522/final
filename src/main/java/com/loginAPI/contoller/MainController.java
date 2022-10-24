@@ -25,24 +25,21 @@ public class MainController {
 	
 	@Autowired
 	private RegisterService registerService;
-	
 	@Autowired
 	private EmailAuthService emailAuthService;
-	
 	@Autowired
 	private PhoneAuthService phoneAuthService;
-	
 	@Autowired
 	private UserNameDuplicateCheckService userNameDuplicateCheckService;
 	
 	
-	@PostMapping("/register")
+	@PostMapping("loginapi/register")
 	public void register(User user) {
 		registerService.register(user);
 	}
 	
 	@ResponseBody
-	@PostMapping("/username/inspection")
+	@PostMapping("loginapi/username/inspection")
 	public Map<String, Object> duplicateCheck(@RequestBody String username){
 		HashMap<String, Object> resultMap = new HashMap<String,Object>();
 		String result = userNameDuplicateCheckService.duplicateCheck(asString(username,"username"));
@@ -51,7 +48,7 @@ public class MainController {
 	}
 	
 	@ResponseBody
-	@PostMapping("/email_auth")
+	@PostMapping("loginapi/email_auth")
 	public Map<String, Object> emailAuth(@RequestBody String email) {
 		HashMap<String, Object> authCodeMap = new HashMap<String,Object>();
 		String authCode = emailAuthService.emailAuth(asString(email,"email"));
@@ -60,7 +57,7 @@ public class MainController {
 	}
 	
 	@ResponseBody
-	@PostMapping("/phone_auth")
+	@PostMapping("loginapi/phone_auth")
 	public Map<String, Object> phoneAuth(@RequestBody String phone){
 		HashMap<String, Object> authCodeMap = new HashMap<String, Object>();
 		String authCode = phoneAuthService.phoneAuth(asString(phone,"phone"));

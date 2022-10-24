@@ -1,7 +1,8 @@
 package com.loginAPI.service;
 
+import java.util.Random;
+
 public interface EmailAuthService {
-
-	public String emailAuth(String email);
-
+	
+	
 }
