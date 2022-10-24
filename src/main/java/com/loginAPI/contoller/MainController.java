@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.loginAPI.model.User;
 import com.loginAPI.service.EmailAuthService;
+import com.loginAPI.service.PhoneAuthService;
 import com.loginAPI.service.RegisterService;
 
 @Controller
@@ -21,6 +22,9 @@ public class MainController {
 	
 	@Autowired
 	private EmailAuthService emailAuthService;
+	
+	@Autowired
+	private PhoneAuthService phoneAuthService;
 	
 	@PostMapping("/register")
 	public void register(User user) {
@@ -33,6 +37,15 @@ public class MainController {
 		HashMap<String, Object> authCodeMap = new HashMap<String,Object>();
 		String authCode = emailAuthService.emailAuth(email);
 		authCodeMap.put("authCode" , authCode);
+		return authCodeMap;
+	}
+	
+	@ResponseBody
+	@PostMapping("/phone_auth")
+	public Map<String, Object> phoneAuth(@RequestBody String phone){
+		HashMap<String, Object> authCodeMap = new HashMap<String, Object>();
+		String authCode = phoneAuthService.phoneAuth(phone);
+		authCodeMap.put("authCode", authCode);
 		return authCodeMap;
 	}
 }

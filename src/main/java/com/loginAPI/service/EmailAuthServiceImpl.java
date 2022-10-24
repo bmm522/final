@@ -34,7 +34,7 @@ public class EmailAuthServiceImpl implements EmailAuthService{
 			return authCode;
 		}
 
-		return authCode;
+		return "Fail sendEmailAuth";
 	}
 	
 	private String asStringEmail(String email) {
@@ -48,18 +48,6 @@ public class EmailAuthServiceImpl implements EmailAuthService{
 		return "not JsonObject";
 	}
 
-	private boolean isValidEmail(String email) {
-		System.out.println("유효성체크함");
-		System.out.println(email);
-		String format = "^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$";
-		Pattern pattern = Pattern.compile(format);
-		Matcher matcher = pattern.matcher(email);
-		if(matcher.matches()) {
-			return true;
-		}
-		log.error("It's not an appropriate email format");
-		return false;
-	}
 
 	public String makeRandomNumber() {
 		String randomNumber = "";
@@ -69,6 +57,18 @@ public class EmailAuthServiceImpl implements EmailAuthService{
 			randomNumber += random.nextInt(10);
 		}
 		return randomNumber;
+	}
+	
+
+	private boolean isValidEmail(String email) {
+		String format = "^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$";
+		Pattern pattern = Pattern.compile(format);
+		Matcher matcher = pattern.matcher(email);
+		if(matcher.matches()) {
+			return true;
+		}
+		log.error("It's not an appropriate email format");
+		return false;
 	}
 	
 	public void sendMail(String subject, String authCode, String toMailAddress, String gmailId, String gmailPassword) {
