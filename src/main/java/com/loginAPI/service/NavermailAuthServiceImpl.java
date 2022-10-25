@@ -1,5 +1,7 @@
 package com.loginAPI.service;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -15,14 +17,17 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class NavermailAuthServiceImpl  extends EmailAuth implements EmailAuthService{
 		
-	public String emailAuth(String email) {
+	public Map<String, Object> emailAuth(String email) {
+		HashMap<String, Object> map =new HashMap<String, Object>();
 		String authCode = makeRandomNumber();
 		String contents = getContents(authCode);
 		if(isValidEmail(email)) {
 			sendMail("이메일 인증코드 입니다.",contents, email);
-			return authCode;
+			map.put("emailAuthCode", authCode);
+			return map;
 		}
-		return "It's not an appropriate email format";
+		map.put("emailAuthCode",  "It's not an appropriate email format");
+		return map;
 	}
 	
 	public void sendMail(String subejct, String body, Object obj) {

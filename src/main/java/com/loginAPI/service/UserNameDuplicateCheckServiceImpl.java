@@ -1,5 +1,8 @@
 package com.loginAPI.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,11 +15,15 @@ public class UserNameDuplicateCheckServiceImpl implements UserNameDuplicateCheck
 	private UserRepository userRepository;
 	
 	@Override
-	public String duplicateCheck(String username) {
+	public Map<String, Object> duplicateCheck(String username) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
 		if(userRepository.existsByUsername(username)) {
-			return "exists";
+			map.put("duplicateCheckResult", "exists");
+			return map;
 		}
-		return "available";
+		map.put("duplicateCheckResult", "available");
+		return map;
 	}
 
 }

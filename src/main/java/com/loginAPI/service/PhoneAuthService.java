@@ -1,7 +1,9 @@
 package com.loginAPI.service;
 
+import java.util.Map;
+
 public interface PhoneAuthService {
 
-	public String phoneAuth(String phone);
+	public Map<String, Object> phoneAuth(String phone);
 
 }

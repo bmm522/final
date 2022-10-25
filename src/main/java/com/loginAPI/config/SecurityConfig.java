@@ -1,5 +1,6 @@
 package com.loginAPI.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -9,6 +10,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.loginAPI.config.filter.loginAuthenticationFilter;
+import com.loginAPI.config.oauth.PrincipalOauth2UserService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -16,6 +18,9 @@ import lombok.RequiredArgsConstructor;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
+	
+	@Autowired
+	private PrincipalOauth2UserService principalOauth2UserService;
 	
 	@Bean
 	public BCryptPasswordEncoder encodePwd() {
@@ -35,6 +40,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN') ")
 		.antMatchers("/admin/**")
 		.access("hasRole('ROLE_ADMIN')")
-		.anyRequest().permitAll();
+		.anyRequest().permitAll()
+		.and()
+		.oauth2Login()
+		.userInfoEndpoint()
+		.userService(principalOauth2UserService);
+
 	}
 }

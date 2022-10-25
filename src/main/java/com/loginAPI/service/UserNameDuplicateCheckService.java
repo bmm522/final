@@ -1,7 +1,9 @@
 package com.loginAPI.service;
 
+import java.util.Map;
+
 public interface UserNameDuplicateCheckService {
 
-	public String duplicateCheck(String username);
+	public Map<String, Object> duplicateCheck(String username);
 
 }

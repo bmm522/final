@@ -1,9 +1,8 @@
 package com.loginAPI.service;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
-import java.util.Random;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
@@ -15,8 +14,6 @@ import javax.mail.internet.MimeUtility;
 
 import org.springframework.stereotype.Service;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 import com.loginAPI.properties.GmailProperties;
 
 import lombok.extern.slf4j.Slf4j;
@@ -25,13 +22,16 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class GmailAuthServiceImpl  extends EmailAuth implements EmailAuthService {
 	
-	public String emailAuth(String email) {
+	public Map<String, Object> emailAuth(String email) {
+		HashMap<String, Object> map = new HashMap<String,Object>();
 		String authCode = makeRandomNumber();
 		if(isValidEmail(email)) { //이메일 유효성 체크
 			sendMail("loginAPI의 이메일인증코드", authCode,email,GmailProperties.gmailId,GmailProperties.gmailPassword);
-			return authCode;
+			map.put("emailAuthCode", authCode);
+			return map;
 		} 
-		return "It's not an appropriate email format";
+		map.put("emailAuthCode", "It's not an appropriate email format");
+		return map;
 	}
 	
 	public void sendMail(String subject, String authCode, String toMailAddress, String gmailId, String gmailPassword) {

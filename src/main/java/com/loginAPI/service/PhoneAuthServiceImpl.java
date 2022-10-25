@@ -1,6 +1,7 @@
 package com.loginAPI.service;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -8,8 +9,6 @@ import java.util.regex.Pattern;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 import com.loginAPI.properties.PhoneProperties;
 
 import lombok.extern.slf4j.Slf4j;
@@ -21,12 +20,17 @@ import net.nurigo.java_sdk.exceptions.CoolsmsException;
 public class PhoneAuthServiceImpl implements PhoneAuthService {
 
 	@Override
-	public String phoneAuth(String phone) {
+	public Map<String, Object> phoneAuth(String phone) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
 		String authCode = makeRandomNumber();
 		if(isValidPhone(phone)) { //폰번호 유효성 체크
 			sendMessage(phone, authCode);	
+			map.put("phoneAuthCode", authCode);
+			return map;
 		}
-		return "Fail sendPhoneAuth";
+		
+		map.put("phoneAuthCode","Fail sendPhoneAuth");
+		return map;
 	}
 
 	

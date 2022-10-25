@@ -23,6 +23,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class MainController {
 	
+	
+
 	@Autowired
 	private RegisterService registerService;
 	@Autowired
@@ -31,39 +33,32 @@ public class MainController {
 	private PhoneAuthService phoneAuthService;
 	@Autowired
 	private UserNameDuplicateCheckService userNameDuplicateCheckService;
-	
-	
+
 	@PostMapping("loginapi/register")
 	public void register(User user) {
 		registerService.register(user);
 	}
-	
+
 	@ResponseBody
 	@PostMapping("loginapi/username/inspection")
 	public Map<String, Object> duplicateCheck(@RequestBody String username){
-		HashMap<String, Object> resultMap = new HashMap<String,Object>();
-		String result = userNameDuplicateCheckService.duplicateCheck(asString(username,"username"));
-		resultMap.put("result", result);
-		return resultMap;
+		return userNameDuplicateCheckService.duplicateCheck(asString(username,"username"));
 	}
 	
 	@ResponseBody
 	@PostMapping("loginapi/email_auth")
-	public Map<String, Object> emailAuth(@RequestBody String email) {
-		HashMap<String, Object> authCodeMap = new HashMap<String,Object>();
-		String authCode = emailAuthService.emailAuth(asString(email,"email"));
-		authCodeMap.put("authCode" , authCode);
-		return authCodeMap;
+	public Map<String, Object> emailAuth(@RequestBody String email) {		
+		return  emailAuthService.emailAuth(asString(email,"email"));
+
 	}
 	
 	@ResponseBody
 	@PostMapping("loginapi/phone_auth")
 	public Map<String, Object> phoneAuth(@RequestBody String phone){
-		HashMap<String, Object> authCodeMap = new HashMap<String, Object>();
-		String authCode = phoneAuthService.phoneAuth(asString(phone,"phone"));
-		authCodeMap.put("authCode", authCode);
-		return authCodeMap;
+		return phoneAuthService.phoneAuth(asString(phone,"phone"));
+
 	}
+
 	
 	private String asString(String data,String dataname) {
 		try{
