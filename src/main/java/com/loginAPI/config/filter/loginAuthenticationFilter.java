@@ -41,7 +41,7 @@ public class loginAuthenticationFilter extends UsernamePasswordAuthenticationFil
 		try {
 			ObjectMapper om = new ObjectMapper();
 			User user = om.readValue(request.getInputStream(), User.class);
-			
+			System.out.println("user : "+user.getProvider());
 			UsernamePasswordAuthenticationToken authenticationToken = 
 					new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
 			
@@ -55,7 +55,7 @@ public class loginAuthenticationFilter extends UsernamePasswordAuthenticationFil
 			}
 					
 					
-			System.out.println(3);
+
 			PrincipalDetails principalDetails = null;
 			try {
 				principalDetails = (PrincipalDetails) authentication.getPrincipal();
@@ -64,7 +64,7 @@ public class loginAuthenticationFilter extends UsernamePasswordAuthenticationFil
 				logger.error("Fail Login");
 				return authentication;
 			}
-			System.out.println(4);
+
 			return authentication;
 		} catch (IOException e) {
 			e.printStackTrace();

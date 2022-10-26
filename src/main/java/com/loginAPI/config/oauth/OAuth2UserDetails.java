@@ -18,8 +18,8 @@ import lombok.Builder;
 // SecurityContextHolder에 담을 목적
 // UserDetails 객체로 만들어줘야함
 
-@AllArgsConstructor
-@Builder
+/*@AllArgsConstructor
+@Builder*/
 public class OAuth2UserDetails implements UserDetails{
 	
 	private Provider provider;
