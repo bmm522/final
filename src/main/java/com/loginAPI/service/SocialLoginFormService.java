@@ -9,8 +9,6 @@ import org.springframework.stereotype.Component;
 
 import com.loginAPI.properties.OAuth2Properties;
 
-import lombok.RequiredArgsConstructor;
-
 @Component
 public class SocialLoginFormService {
 	
@@ -34,8 +32,9 @@ public class SocialLoginFormService {
 						.map(param -> param.getKey() + "="  +param.getValue())
 						.collect(Collectors.joining("&"));
 		
+		System.out.println(paramStr);
 		return OAuth2Properties.GOOGLE_LOGIN_URL 
-					+ "/loginapi/test" 
+					+ "/o/oauth2/v2/auth" 
 					+ "?" 
 					+ paramStr;
 	}
@@ -58,5 +57,8 @@ public class SocialLoginFormService {
 	}
 	public String getGoogleScope() {
 		return OAuth2Properties.GOOGLE_SCOPE.replaceAll(",", "%20");
+	}
+	public String getGoogleAuthUrl() {
+		return OAuth2Properties.GOOGLE_AUTH_URL;
 	}
 }

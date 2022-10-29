@@ -15,6 +15,7 @@ import com.loginAPI.model.User;
 import com.loginAPI.service.EmailAuthService;
 import com.loginAPI.service.PhoneAuthService;
 import com.loginAPI.service.RegisterService;
+import com.loginAPI.service.SocialLoginFormService;
 import com.loginAPI.service.UserNameDuplicateCheckService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -37,16 +38,6 @@ public class MainController {
 		registerService.register(user);
 	}
 	
-	@GetMapping("/login")
-	public String login() {
-		return "index";
-	}
-	
-	@GetMapping("/loginapi/test")
-	public String test() {
-		return "hi";
-	}
-
 	@ResponseBody
 	@PostMapping("loginapi/username/inspection")
 	public Map<String, Object> duplicateCheck(@RequestBody String username){

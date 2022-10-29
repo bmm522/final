@@ -36,7 +36,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.httpBasic().disable()
 		.addFilter(new loginAuthenticationFilter(authenticationManager()))
 		.authorizeRequests()
-		.antMatchers("/login/oauth2/code/*").permitAll()
 		.anyRequest().permitAll();
 
 
