@@ -4,37 +4,200 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <link href="https://cdn-icons-png.flaticon.com/512/1384/1384031.png" rel="shortcut icon" type="image/x-icon">
-    <link rel="stylesheet" href="style/common.css">
-    <link rel="stylesheet" href="style/login.css">
-    <title>Westagram</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/login.css">
+    <title>MZTALK</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <section class="container">
-        <article class="topWrap">
-            <h1 class="logo">Westagram</h1>
-            <input class="userName" type="text" placeholder="전화번호, 사용자 이름 또는 이메일">
-            <input class="userPassword" type="password" placeholder="비밀번호">
-            <button class="loginBtn">로그인</button>
-            <div class="meddleLine">
-                <div class="line"></div>
-                <p>또는</p>
-                <div class="line"></div>
+    <nav>
+        <div class="navContainer">
+            <article class="logoWrap">
+                <!-- <img src="https://cdn-icons-png.flaticon.com/512/1384/1384031.png" alt="로고">
+                <div class="columnLine"></div>
+                <h1 class="logo">MZTALK</h1> -->
+            </article>
+            <!-- <article class="search">
+                <input type="text" placeholder="검색" >
+            </article> -->
+            <article class="pictogramWrap">
+<!--                 
+                <i class="fa-solid fa-comments" style=""></i>
+                <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/profile.png" alt="프로필"> -->
+            </article>
+        </div>
+    </nav>
+   <!-- 여기서 놀아주세요. -->
+
+        <main class="main">
+            <section class="home">
+              <h1>학생들을 위한 소셜플랫폼 <span>MZTALK</span></h1>
+              <button id="sign-up" class="btn">Sign Up</button>
+              <button id="sign-in" class="btn">Login</button>
+              <p><a class="link-copy" href="#" target="_blank">Forgot Your Id or Pwd?</a></p>
+              <p><a class="link-copy" href="http://collectui.com/designers/dnes/sign-up" target="_blank">©Copyright 2022</a></p>
+            </section>
+          
+            <section class="sign-up">
+              <article class="signup-left">
+                <h1>MZTALK</h1>
+                <div class="wc_message">
+                  <h3></h3>
+                  <p></p>
+                </div>
+                <div class="btn-back">
+                  <i class="fas fa-2x fa-angle-left angle-left-color"></i>
+                  HOME
+                </div>
+              </article>
+          
+              <article class="form-area">
+                <!-- Form area Sign Up -->
+                <div class="organize-form form-area-signup">
+                  <h2>SIGN UP</h2>
+                  <form class="form">
+                    <div class="form-field">
+                      <label for="username">아이디</label>
+                      <input type="text" id="username" />
+                    </div>
+
+                    <div class="form-field">
+                      <label for="password">비밀번호</label>
+                      <input type="password" id="password" />
+                    </div>
+
+                    <div class="form-field">
+                      <label for="checkPassword">비밀번호 확인</label>
+                      <input type="password" id="checkPassword" />
+                    </div>
+          
+                    <div class="form-field">
+                      <label for="email">이메일</label>
+                      <input type="text" id="email" />
+                    </div>
+
+                    <div class="form-field">
+                      <label for="birth">생일(ex : 19910101)</label>
+                      <input type="text" id="birth" />
+                    </div>
+
+                    <div class="form-field">
+                      <label for="phone">전화번호('-는 빼고 입력해주세요.')</label>
+                      <input type="text" id="phone" />
+                    </div>
+                    <br>
+
+                    <button type="button" class="w-btn-outline w-btn-yellow-outline" onclick="DaumAPI();" >우편번호 찾기</button><br>
+                    
+                    <div class="form-field">
+                      <label for="address">주소</label>
+                      
+                      <input type="text" id="address" />
+                    </div>
+                   
+
+          
+                    
+          
+                    <button class="btn-sign btn-up">Sign Up</button>
+                  </form>
+                  <p>Have an account? <a href="#" class="link-in">Login</a></p>
+          
+                </div>
+          
+                <!-- Form area Sign In -->
+                <div class="organize-form form-area-signin">
+                  <h2>Login</h2>
+                  <form class="form">
+                    <div class="form-field">
+                      <label for="email-in">Your Id</label>
+                      <input type="text" name="email_in" id="email-in" />
+                    </div>
+          
+                    <div class="form-field">
+                      <label for="password-in">Password</label>
+                      <input type="text" name="password_in" id="password-in" />
+                    </div>
+          
+                    <button class="btn-sign btn-in">Sign In</button>
+                  </form>
+                  <p>Haven't an account? <a href="#" class="link-up">Sign Up</a></p>
+                </div>
+              </article>
+          
+              <article class="signup-right">
+                <i class="fas fa-2x fa-bars bars-style"></i>
+                <!-- <img src="img/MZTALKlogo4.png" alt="로고" style="width: 500px;"/> -->
+                <p><a class="link-copy" href="http://collectui.com/designers/dnes/sign-up" target="_blank">©Copyright 2022</a></p>
+          
+              </article>
+            </section>
+          </main>
+        
+
+<!-- 
+
+    <div class="floating">
+        <div class="remocon"> 
+            <figure><img src="img/mento.png" style="width: 70px; margin-bottom: 25px; margin-top: 25px;"/></figure>
+           
+            <figure> <img src="img/qjd.png" style="width: 70px;"/></figure>
+            
+            <figure>  <img src="img/book.png" style="width: 70px; margin-top:30px;"/></figure> -->
+            
+
+            <!-- <figure><i class="fa-solid fa-comments" style="width: 85px;"></i></figure> -->
+        <!-- </div>
+
+
+        <div class="side side1"></div>
+        <div class="side side2"></div>
+        <div class="side side3"></div>
+        <div class="side side4"></div>
+    </div> -->
+
+    <!-- <div id="upBtn">
+        <a href="#"><figure id="up-figure"><img src="img/top.png" style="width: 40px;"/></figure></a>
+    
+    </div>  -->
+<!-- 
+    <div id="upBtn">
+          <a href="#"><figure><img src="img/top.png" style="width: 50px;"/></figure></a>
+    </div> -->
+    <!-- <footer>
+        <div class="container">
+            <ul>
+               <li><a href="#a">소개</a></li>
+               <li><a href="#a">블로그</a></li>
+               <li><a href="#a">채용 정보</a></li>
+               <li><a href="#a">도움말</a></li>
+               <li><a href="#a">API</a></li>
+               <li><a href="#a">개인정보처리방침</a></li>
+               <li><a href="#a">약관</a></li>
+               <li><a href="#a">인기 계정</a></li>
+               <li><a href="#a">해시태그</a></li>
+               <li><a href="#a">위치</a></li>
+            </ul>
+            <div class="copy">
+               <p>© 2022 MZTALK from Spring</p>
             </div>
-            <div class="facebookWrap">
-                <p>Facebook으로 로그인</p>
-            </div>
-            <p class="passwordLost">비밀번호를 잊으셨나요?</p>
-        </article>
-        <article class="signUpWrap">
-            <p>계정이 없으신가요? <a href="" class="signUpBlue">가입하기</a></p>
-        </article>
-        <p class="downlodeCopyright">앱을 다운로드하세요.</p>
-        <article class="storeWrap" >
-            <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_ios_korean-ko.png/4a5c9d62d51b.png" alt="appStore">
-            <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_android_korean-ko.png/f155b664a93b.png" alt="googlePlay">
-        </article>
-    </section>
-    <script src="JS/login.js"></script>
+         </div>
+      
+    
+       </footer> -->
+   
+    <!-- <div id="upBtn">
+    <ul class="menu align-center expanded text-center SMN_effect-74">
+        <li><a href="#" data-hover="Home" id="homeRef">UP</a></li>
+        </ul>
+        </div> -->
+   
 </body>
+<script src="JS/main.js"></script>
+<script src="JS/login.js"></script>
 </html>
